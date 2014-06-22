@@ -9,7 +9,7 @@ class PostTest extends PHPUnit_Framework_TestCase
         $hostname = 'http://www.google.com';
 
         $post = new Post;
-        $post->type = 'PAGE';
+        $post->type = 'page';
         $post->postname = 'me-and-my-dog';
         $post->setHostName($hostname);
 
@@ -38,7 +38,7 @@ class PostTest extends PHPUnit_Framework_TestCase
         $post->monthnum = '01';
         $post->day = '02';
         $post->postname = 'me-and-my-dog';
-        $post->type = 'POST';
+        $post->type = 'post';
         $post->setHostName('');
 
         return array(

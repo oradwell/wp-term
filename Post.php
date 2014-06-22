@@ -37,7 +37,7 @@ class Post
 
     protected function getUrlPath()
     {
-        if ($this->type === 'PAGE') {
+        if ($this->type === 'page') {
             return '/' . $this->postname;
         }
 
