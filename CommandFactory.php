@@ -1,10 +1,19 @@
 <?php
 
 require __DIR__ . '/ListCommand.php';
+require __DIR__ . '/GotoCommand.php';
 require __DIR__ . '/InvalidCommandException.php';
 
 class CommandFactory
 {
+    /**
+     * Get instance of a Command class
+     *
+     * @param  string $executable Name of the executable
+     *
+     * @return CommandAbstract    Instance of a class
+     *                            that extends CommandAbstract
+     */
     public static function make($executable)
     {
         switch ($executable) {

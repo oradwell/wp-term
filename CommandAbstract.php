@@ -1,8 +1,11 @@
 <?php
 
+require __DIR__ . '/InvalidCommandArgumentException.php';
+
 abstract class CommandAbstract
 {
     protected $arguments = array();
+    protected static $validArguments;
 
     abstract public function execute();
 
@@ -24,5 +27,15 @@ abstract class CommandAbstract
     protected function hasArgument($argument)
     {
         return array_search($argument, $this->arguments) !== false;
+    }
+
+    protected function checkArgumentsValid()
+    {
+        $invalidArgs = array_diff($this->arguments, static::$validArguments);
+        if ($invalidArgs) {
+            throw new InvalidCommandArgumentException(
+                'Invalid command argument: ' . $invalidArgs[0]
+            );
+        }
     }
 }
