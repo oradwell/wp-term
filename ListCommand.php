@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/CommandAbstract.php';
+require_once __DIR__ . '/FilePostProvider.php';
 
 class ListCommand extends CommandAbstract
 {
@@ -20,7 +21,21 @@ class ListCommand extends CommandAbstract
         $this->checkArgumentsValid();
 
         return array(
-            'list' => array()
+            'list' => $this->getPostList();
         );
+    }
+
+    protected function getPostList()
+    {
+        /**
+         * @todo Use some kind of dependency injection
+         */
+        $fh = fopen(__DIR__ . '/posts.csv', 'r');
+        $posts = new FilePostProvider($fh);
+
+        $postList = array();
+        foreach ($posts as $post) {
+            $postList[] = $post->postname;
+        }
     }
 }
