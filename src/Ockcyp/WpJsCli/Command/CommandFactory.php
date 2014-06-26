@@ -29,7 +29,7 @@ class CommandFactory
                 return static::make('list')
                     ->addArguments('--posts');
             case 'goto':
-                return new GetCommand;
+                return new GotoCommand;
             default:
                 throw new InvalidCommandException(
                     'Command not found: ' . $executable

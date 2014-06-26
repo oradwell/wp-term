@@ -32,7 +32,31 @@ class ListCommand extends CommandAbstract
 
         $postList = array();
         foreach ($posts as $post) {
+            if ($this->isPostFiltered($post)) {
+                continue;
+            }
             $postList[] = $post->postname;
         }
+
+        return $postList;
+    }
+
+    protected function isPostFiltered($post)
+    {
+        if ($this->hasArgument('--posts')
+            && !$this->hasArgument('--pages')
+            && $post->type === 'page'
+        ) {
+            return true;
+        }
+
+        if ($this->hasArgument('--pages')
+            && !$this->hasArgument('--posts')
+            && $post->type === 'post'
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }

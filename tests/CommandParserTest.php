@@ -37,6 +37,17 @@ class CommandParserTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Ockcyp\WpJsCli\Command\ListCommand', $listCommand);
     }
 
+    public function testParsesGotoCommand()
+    {
+        $parser = $this->parser
+            ->parse('goto about');
+        $this->assertInstanceOf('Ockcyp\WpJsCli\Parser\Command', $parser);
+
+        $gotoCommand = $parser->get();
+        $this->assertInstanceOf('Ockcyp\WpJsCli\Command\CommandAbstract', $gotoCommand);
+        $this->assertInstanceOf('Ockcyp\WpJsCli\Command\GotoCommand', $gotoCommand);
+    }
+
     public function listCommandProvider()
     {
         return array(

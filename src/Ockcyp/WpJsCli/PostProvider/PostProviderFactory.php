@@ -8,6 +8,7 @@ class PostProviderFactory
 {
     protected static $init = false;
     protected static $config = null;
+    protected static $provider = null;
 
     public static function make()
     {
@@ -18,11 +19,18 @@ class PostProviderFactory
 
     protected static function getCurrentProvider()
     {
-        $postSrc = $this->config['post_src'];
-        switch ($this->config[$postSrc]['type']) {
+        if (static::$provider) {
+            return static::$provider;
+        }
+
+        $postSrc = static::$config['post_src'];
+        switch (static::$config[$postSrc]['type']) {
             case 'file':
-                $fh = fopen($this->config[$postSrc]['path'], 'r');
-                return new FilePostProvider($fh);
+                $fh = fopen(
+                    __DIR__ . '../../../../../' . static::$config[$postSrc]['path'],
+                    'r'
+                );
+                return static::$provider = new FilePostProvider($fh);
             case 'db':
                 // not implemented yet
                 return null;
@@ -35,7 +43,7 @@ class PostProviderFactory
             return;
         }
 
-        $this->config = require __DIR__ . '/config/app.php';
-        $this->init = true;
+        static::$config = require __DIR__ . '/../../../../config/app.php';
+        static::$init = true;
     }
 }

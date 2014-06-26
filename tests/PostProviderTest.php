@@ -9,7 +9,7 @@ class PostProviderTest extends PHPUnit_Framework_TestCase
 
     public function __construct($name = null, $data = array(), $dataName = '')
     {
-        $this->fh = fopen(__DIR__ . '/posts.csv', 'r');
+        $this->fh = fopen(__DIR__ . '/../posts.csv', 'r');
         $this->posts = new FilePostProvider($this->fh);
 
         parent::__construct($name, $data, $dataName);
