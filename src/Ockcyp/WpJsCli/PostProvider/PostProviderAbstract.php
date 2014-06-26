@@ -1,8 +1,10 @@
 <?php
 
-require __DIR__ . '/Post.php';
+namespace Ockcyp\WpJsCli\PostProvider;
 
-abstract class PostProviderAbstract implements Iterator
+use Ockcyp\WpJsCli\Entity\Post;
+
+abstract class PostProviderAbstract implements \Iterator
 {
     protected function getPostInstance()
     {

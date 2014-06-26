@@ -1,6 +1,8 @@
 <?php
 
-require __DIR__ . '/InvalidCommandArgumentException.php';
+namespace Ockcyp\WpJsCli\Command;
+
+use Ockcyp\WpJsCli\Exception\InvalidCommandArgumentException;
 
 abstract class CommandAbstract
 {

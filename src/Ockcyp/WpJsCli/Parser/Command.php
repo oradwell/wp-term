@@ -1,8 +1,11 @@
 <?php
 
-require __DIR__ . '/CommandFactory.php';
+namespace Ockcyp\WpJsCli\Parser;
 
-class CommandParser
+use Ockcyp\WpJsCli\Command\CommandFactory;
+use Ockcyp\WpJsCli\Exception\InvalidCommandException;
+
+class Command
 {
     protected $executable;
     protected $arguments;

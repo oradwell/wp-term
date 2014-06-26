@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../Post.php';
+use Ockcyp\WpJsCli\Entity\Post;
 
 class PostTest extends PHPUnit_Framework_TestCase
 {

@@ -1,8 +1,8 @@
 <?php
 
-require __DIR__ . '/PostProviderAbstract.php';
+namespace Ockcyp\WpJsCli\PostProvider;
 
-class FilePostProvider extends PostProviderAbstract
+class File extends PostProviderAbstract
 {
     protected $fh;
     protected $current;

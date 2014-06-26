@@ -1,7 +1,8 @@
 <?php
 
-require_once __DIR__ . '/CommandAbstract.php';
-require_once __DIR__ . '/PostProviderFactory.php';
+namespace Ockcyp\WpJsCli\Command;
+
+use Ockcyp\WpJsCli\PostProvider\PostProviderFactory;
 
 class ListCommand extends CommandAbstract
 {

@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../FilePostProvider.php';
+use Ockcyp\WpJsCli\PostProvider\File as FilePostProvider;
 
 class PostProviderTest extends PHPUnit_Framework_TestCase
 {
@@ -66,7 +66,7 @@ class PostProviderTest extends PHPUnit_Framework_TestCase
      */
     public function testReturnsValidPostObject($post)
     {
-        $this->assertInstanceOf('Post', $post);
+        $this->assertInstanceOf('Ockcyp\WpJsCli\Entity\Post', $post);
 
         $this->assertNotEmpty($post->post_id);
         $this->assertNotEmpty($post->year);

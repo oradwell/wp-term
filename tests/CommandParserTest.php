@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../CommandParser.php';
+use Ockcyp\WpJsCli\Parser\Command as CommandParser;
 
 class CommandParserTest extends PHPUnit_Framework_TestCase
 {
@@ -30,11 +30,11 @@ class CommandParserTest extends PHPUnit_Framework_TestCase
     {
         $parser = $this->parser
             ->parse($command);
-        $this->assertInstanceOf('CommandParser', $parser);
+        $this->assertInstanceOf('Ockcyp\WpJsCli\Parser\Command', $parser);
 
         $listCommand = $parser->get();
-        $this->assertInstanceOf('CommandAbstract', $listCommand);
-        $this->assertInstanceOf('ListCommand', $listCommand);
+        $this->assertInstanceOf('Ockcyp\WpJsCli\Command\CommandAbstract', $listCommand);
+        $this->assertInstanceOf('Ockcyp\WpJsCli\Command\ListCommand', $listCommand);
     }
 
     public function listCommandProvider()

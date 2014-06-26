@@ -1,8 +1,10 @@
 <?php
 
-require __DIR__ . '/ListCommand.php';
-require __DIR__ . '/GotoCommand.php';
-require __DIR__ . '/InvalidCommandException.php';
+namespace Ockcyp\WpJsCli\Command;
+
+use Ockcyp\WpJsCli\Command\GotoCommand;
+use Ockcyp\WpJsCli\Command\ListCommand;
+use Ockcyp\WpJsCli\Exception\InvalidCommandException;
 
 class CommandFactory
 {
@@ -27,7 +29,7 @@ class CommandFactory
                 return static::make('list')
                     ->addArguments('--posts');
             case 'goto':
-                return new GotoCommand;
+                return new GetCommand;
             default:
                 throw new InvalidCommandException(
                     'Command not found: ' . $executable

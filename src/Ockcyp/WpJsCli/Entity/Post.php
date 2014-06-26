@@ -1,5 +1,7 @@
 <?php
 
+namespace Ockcyp\WpJsCli\Entity;
+
 class Post
 {
     public $post_id;

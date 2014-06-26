@@ -1,5 +1,9 @@
 <?php
 
+namespace Ockcyp\WpJsCli\PostProvider;
+
+use Ockcyp\WpJsCli\PostProvider\File as FilePostProvider;
+
 class PostProviderFactory
 {
     protected static $init = false;
