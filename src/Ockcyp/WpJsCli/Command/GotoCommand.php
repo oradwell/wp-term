@@ -2,7 +2,7 @@
 
 namespace Ockcyp\WpJsCli\Command;
 
-class Goto extends CommandAbstract
+class GotoCommand extends CommandAbstract
 {
     public function execute()
     {
