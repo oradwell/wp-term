@@ -40,7 +40,7 @@ class Post
     protected function getUrlPath()
     {
         if ($this->type === 'page') {
-            return '/' . $this->postname;
+            return '/' . $this->postname . '/';
         }
 
         return $this->getPostPermalinkFromStructure();

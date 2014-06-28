@@ -14,7 +14,7 @@ class PostTest extends PHPUnit_Framework_TestCase
         $post->setHostName($hostname);
 
         $this->assertEquals(
-            $hostname . '/' . $post->postname,
+            $hostname . '/' . $post->postname . '/',
             $post->getPostUrl()
         );
     }
