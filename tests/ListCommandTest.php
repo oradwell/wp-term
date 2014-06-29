@@ -1,6 +1,6 @@
 <?php
 
-use Ockcyp\WpJsCli\Command\ListCommand;
+use Ockcyp\WpPostsCli\Command\ListCommand;
 
 class ListCommandTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class ListCommandTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Ockcyp\WpJsCli\Exception\InvalidCommandArgumentException
+     * @expectedException Ockcyp\WpPostsCli\Exception\InvalidCommandArgumentException
      */
     public function testGivesInvalidArgumentException()
     {

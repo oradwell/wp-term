@@ -1,9 +1,9 @@
 <?php
 
-namespace Ockcyp\WpJsCli\Command;
+namespace Ockcyp\WpPostsCli\Command;
 
-use Ockcyp\WpJsCli\PostProvider\PostProviderFactory;
-use Ockcyp\WpJsCli\Exception\MissingCommandArgumentException;
+use Ockcyp\WpPostsCli\PostProvider\PostProviderFactory;
+use Ockcyp\WpPostsCli\Exception\MissingCommandArgumentException;
 
 class GotoCommand extends CommandAbstract
 {

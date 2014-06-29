@@ -1,8 +1,8 @@
 <?php
 
-namespace Ockcyp\WpJsCli\PostProvider;
+namespace Ockcyp\WpPostsCli\PostProvider;
 
-use Ockcyp\WpJsCli\Entity\Post;
+use Ockcyp\WpPostsCli\Entity\Post;
 
 abstract class PostProviderAbstract implements \Iterator
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Ockcyp\WpJsCli\Command;
+namespace Ockcyp\WpPostsCli\Command;
 
-use Ockcyp\WpJsCli\PostProvider\PostProviderFactory;
+use Ockcyp\WpPostsCli\PostProvider\PostProviderFactory;
 
 class ListCommand extends CommandAbstract
 {

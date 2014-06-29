@@ -1,6 +1,6 @@
 <?php
 
-use Ockcyp\WpJsCli\Command\GotoCommand;
+use Ockcyp\WpPostsCli\Command\GotoCommand;
 
 class GotoCommandTest extends PHPUnit_Framework_TestCase
 {
@@ -10,7 +10,7 @@ class GotoCommandTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Ockcyp\WpJsCli\Exception\MissingCommandArgumentException
+     * @expectedException Ockcyp\WpPostsCli\Exception\MissingCommandArgumentException
      */
     public function testGivesMissingCommandArgumentException()
     {

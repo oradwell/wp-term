@@ -1,6 +1,6 @@
 <?php
 
-use Ockcyp\WpJsCli\Parser\Command as CommandParser;
+use Ockcyp\WpPostsCli\Parser\Command as CommandParser;
 
 class CommandParserTest extends PHPUnit_Framework_TestCase
 {
@@ -30,22 +30,22 @@ class CommandParserTest extends PHPUnit_Framework_TestCase
     {
         $parser = $this->parser
             ->parse($command);
-        $this->assertInstanceOf('Ockcyp\WpJsCli\Parser\Command', $parser);
+        $this->assertInstanceOf('Ockcyp\WpPostsCli\Parser\Command', $parser);
 
         $listCommand = $parser->get();
-        $this->assertInstanceOf('Ockcyp\WpJsCli\Command\CommandAbstract', $listCommand);
-        $this->assertInstanceOf('Ockcyp\WpJsCli\Command\ListCommand', $listCommand);
+        $this->assertInstanceOf('Ockcyp\WpPostsCli\Command\CommandAbstract', $listCommand);
+        $this->assertInstanceOf('Ockcyp\WpPostsCli\Command\ListCommand', $listCommand);
     }
 
     public function testParsesGotoCommand()
     {
         $parser = $this->parser
             ->parse('goto about');
-        $this->assertInstanceOf('Ockcyp\WpJsCli\Parser\Command', $parser);
+        $this->assertInstanceOf('Ockcyp\WpPostsCli\Parser\Command', $parser);
 
         $gotoCommand = $parser->get();
-        $this->assertInstanceOf('Ockcyp\WpJsCli\Command\CommandAbstract', $gotoCommand);
-        $this->assertInstanceOf('Ockcyp\WpJsCli\Command\GotoCommand', $gotoCommand);
+        $this->assertInstanceOf('Ockcyp\WpPostsCli\Command\CommandAbstract', $gotoCommand);
+        $this->assertInstanceOf('Ockcyp\WpPostsCli\Command\GotoCommand', $gotoCommand);
     }
 
     public function listCommandProvider()

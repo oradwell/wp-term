@@ -1,6 +1,6 @@
 <?php
 
-namespace Ockcyp\WpJsCli\PostProvider;
+namespace Ockcyp\WpPostsCli\PostProvider;
 
 class File extends PostProviderAbstract
 {
