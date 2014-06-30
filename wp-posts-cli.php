@@ -24,5 +24,9 @@ if (!$command) {
     json_response(array('msg' => "Invalid command '$cmd'"));
 }
 
-$result = $command->execute();
+try {
+    $result = $command->execute();
+} catch (Exception $e) {
+    $result = array('msg' => $e->getMessage());
+}
 json_response($result);
