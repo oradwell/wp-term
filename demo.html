@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WP Posts CLI</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function addToHistory(string) {
+            var historyObj = $('.term-history');
+            var promptText = $('.term-prompt').text();
+            historyObj.append(promptText + ' ' + string + "<br />");
+            historyObj[0].scrollTop = historyObj[0].scrollHeight;
+        }
+
+        $(function () {
+            $('.term-input').on('keyup', function (e) {
+                if (e.keyCode == 13) {
+                    addToHistory(this.value);
+                    this.value = '';
+                }
+            })
+        });
+    </script>
+    <style type="text/css">
+        body {
+            height: 200px;
+        }
+        .terminal {
+            font-family: "Courier New", Courier, monospace;
+            height:100%;
+        }
+        .term-history {
+            height:calc(100% - 40px); /* subtract input height */
+            overflow-y:auto;
+        }
+        .term-input {
+            border: 0;
+            width: calc(100% - 85px); /* subtract prompt width */
+            overflow-x: hidden;
+            font-family: inherit;
+            font-size: inherit;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="term-history"></div>
+        <div class="term-cmd-line">
+            <span class="term-prompt">prompt&gt;</span>
+            <input class="term-input" value="ls -al" />
+        </div>
+    </div>
+</body>
+</html>
