@@ -9,9 +9,11 @@
 
         $(function() {
             var wpTerm = (function(termElem) {
-                self.url = 'wp-posts-cli.php';
-                self.historyObj = termElem.find('.term-history');
-                self.promptText = termElem.find('.term-prompt').text();
+                var self = {
+                    url: 'wp-posts-cli.php',
+                    historyObj: termElem.find('.term-history'),
+                    promptText: termElem.find('.term-prompt').text()
+                };
 
                 self.appendToHistory = function(string) {
                     historyObj.append(string + '<br />');
@@ -47,12 +49,12 @@
                 self.executeCommand = function(command) {
                     appendCommand(command);
                     if (command) {
-                        self.sendRequest(command);
+                        sendRequest(command);
                     }
                 };
 
                 self.sendRequest = function(command) {
-                    $.get(self.url, {cmd: command}, self.handleResponse);
+                    $.get(url, {cmd: command}, handleResponse);
                 }
 
                 self.handleKeyUp = function(e) {
