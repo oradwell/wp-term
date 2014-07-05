@@ -11,13 +11,18 @@
             var wpTerm = (function(termElem) {
                 var self = {
                     url: 'wp-posts-cli.php',
-                    historyObj: termElem.find('.term-history'),
-                    promptText: termElem.find('.term-prompt').text()
+                    historyCon: termElem.find('.term-history'),
+                    promptText: termElem.find('.term-prompt').text(),
+                    history: {
+                        list: [],
+                        cur: -1,
+                        tmp: ''
+                    }
                 };
 
                 self.appendToHistory = function(string) {
-                    self.historyObj.append(string + '<br />');
-                    self.historyObj[0].scrollTop = self.historyObj[0].scrollHeight;
+                    self.historyCon.append(string + '<br />');
+                    self.historyCon[0].scrollTop = self.historyCon[0].scrollHeight;
                 };
 
                 self.appendCommand = function(string) {
@@ -37,6 +42,11 @@
                 };
 
                 self.executeCommand = function(command) {
+                    if (self.history.list[self.history.list.length - 1] != command) {
+                        self.history.list.push(command);
+                        self.history.cur = self.history.list.length;
+                    }
+                    self.history.tmp = '';
                     self.appendCommand(command);
                     if (command) {
                         self.sendRequest(command);
@@ -61,6 +71,28 @@
                     if (e.keyCode == 13) {
                         self.executeCommand(this.value);
                         this.value = '';
+                    } else if (e.keyCode == 38 || e.keyCode == 40) {
+                        if (!self.history.list.length) {
+                            return;
+                        }
+
+                        var cur = self.history.cur,
+                            prevCur = cur;
+                        cur = e.keyCode == 40 ? cur + 1 : cur - 1;
+                        if (cur < 0) {
+                            cur = 0;
+                        } else if (cur > self.history.list.length) {
+                            cur = self.history.list.length;
+                        }
+                        if (cur == self.history.list.length) {
+                            this.value = self.history.tmp;
+                        } else {
+                            if (prevCur == self.history.list.length) {
+                                self.history.tmp = this.value;
+                            }
+                            this.value = self.history.list[cur];
+                        }
+                        self.history.cur = cur;
                     }
                 };
 
