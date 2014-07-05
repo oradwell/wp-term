@@ -4,6 +4,7 @@ namespace Ockcyp\WpPostsCli\Command;
 
 use Ockcyp\WpPostsCli\PostProvider\PostProviderFactory;
 use Ockcyp\WpPostsCli\Exception\MissingCommandArgumentException;
+use Ockcyp\WpPostsCli\Exception\PostNotFoundException;
 
 class GotoCommand extends CommandAbstract
 {
@@ -12,9 +13,6 @@ class GotoCommand extends CommandAbstract
         $this->checkArgumentsValid();
 
         $post = $this->findPost($this->arguments[0]);
-        if ($post === false) {
-            return null;
-        }
 
         return array(
             'url' => $post->getPostUrl(),
@@ -31,7 +29,7 @@ class GotoCommand extends CommandAbstract
             }
         }
 
-        return false;
+        throw new PostNotFoundException('Post not found: ' . $postname);
     }
 
     protected function checkArgumentsValid()

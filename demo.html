@@ -16,39 +16,39 @@
                 };
 
                 self.appendToHistory = function(string) {
-                    historyObj.append(string + '<br />');
-                    historyObj[0].scrollTop = historyObj[0].scrollHeight;
+                    self.historyObj.append(string + '<br />');
+                    self.historyObj[0].scrollTop = self.historyObj[0].scrollHeight;
                 };
 
                 self.appendCommand = function(string) {
-                    appendToHistory(promptText + ' ' + string);
+                    self.appendToHistory(self.promptText + ' ' + string);
                 };
 
                 self.appendResponse = function(response) {
                     if (response.list && response.list.length) {
                         for (var i = 0; i < response.list.length; i++) {
-                            appendToHistory(response.list[i]);
+                            self.appendToHistory(response.list[i]);
                         }
                     } else if (response.msg) {
-                        appendToHistory(response.msg);
+                        self.appendToHistory(response.msg);
                     } else if (response.url) {
-                        appendToHistory('Redirecting to: ' + response.url);
+                        self.appendToHistory('Redirecting to: ' + response.url);
                     }
                 };
 
                 self.executeCommand = function(command) {
-                    appendCommand(command);
+                    self.appendCommand(command);
                     if (command) {
-                        sendRequest(command);
+                        self.sendRequest(command);
                     }
                 };
 
                 self.sendRequest = function(command) {
-                    $.get(url, {cmd: command}, handleResponse);
+                    $.get(self.url, {cmd: command}, self.handleResponse);
                 }
 
                 self.handleResponse = function(response) {
-                    appendResponse(response);
+                    self.appendResponse(response);
                     if (response.url) {
                         var url = response.url;
                         setTimeout(function() {
@@ -59,7 +59,7 @@
 
                 self.handleKeyUp = function(e) {
                     if (e.keyCode == 13) {
-                        executeCommand(this.value);
+                        self.executeCommand(this.value);
                         this.value = '';
                     }
                 };
@@ -72,7 +72,7 @@
     </script>
     <style type="text/css">
         body {
-            height: 600px;
+            height: 500px;
         }
         .terminal {
             font-family: "Courier New", Courier, monospace;
