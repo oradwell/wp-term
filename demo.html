@@ -36,16 +36,6 @@
                     }
                 };
 
-                self.handleResponse = function(response) {
-                    appendResponse(response);
-                    if (response.url) {
-                        var url = response.url;
-                        setTimeout(function() {
-                            document.location.href = url;
-                        }, 500);
-                    }
-                };
-
                 self.executeCommand = function(command) {
                     appendCommand(command);
                     if (command) {
@@ -56,6 +46,16 @@
                 self.sendRequest = function(command) {
                     $.get(url, {cmd: command}, handleResponse);
                 }
+
+                self.handleResponse = function(response) {
+                    appendResponse(response);
+                    if (response.url) {
+                        var url = response.url;
+                        setTimeout(function() {
+                            document.location.href = url;
+                        }, 500);
+                    }
+                };
 
                 self.handleKeyUp = function(e) {
                     if (e.keyCode == 13) {
@@ -96,7 +96,7 @@
         <div class="term-history"></div>
         <div class="term-cmd-line">
             <span class="term-prompt">prompt&gt;</span>
-            <input class="term-input" value="ls -al" />
+            <input class="term-input" value="" />
         </div>
     </div>
 </body>

@@ -27,7 +27,7 @@ class PostProviderFactory
         switch (static::$config[$postSrc]['type']) {
             case 'file':
                 $fh = fopen(
-                    __DIR__ . '../../../../../' . static::$config[$postSrc]['path'],
+                    APP_PATH . '/' . static::$config[$postSrc]['path'],
                     'r'
                 );
                 return static::$provider = new FilePostProvider($fh);
@@ -43,7 +43,7 @@ class PostProviderFactory
             return;
         }
 
-        static::$config = require __DIR__ . '/../../../../config/app.php';
+        static::$config = require APP_PATH . '/config/app.php';
         static::$init = true;
     }
 }
