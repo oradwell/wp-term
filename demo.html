@@ -10,7 +10,8 @@
         $(function() {
             var wpTerm = (function(termElem) {
                 var self = {
-                    url: 'wp-posts-cli.php',
+                    // url: 'wp-posts-cli.php',
+                    url: 'http://local-vm/secim/wp-posts-cli.php',
                     historyCon: termElem.find('.term-history'),
                     promptText: termElem.find('.term-prompt').text(),
                     history: {
@@ -42,19 +43,40 @@
                 };
 
                 self.executeCommand = function(command) {
+                    // Save the command only if different from last command
                     if (self.history.list[self.history.list.length - 1] != command) {
                         self.history.list.push(command);
                         self.history.cur = self.history.list.length;
                     }
                     self.history.tmp = '';
                     self.appendCommand(command);
-                    if (command) {
-                        self.sendRequest(command);
+                    switch (command.trim()) {
+                        case 'history':
+                            self.showHistory();
+                            break;
+                        case 'clear':
+                            self.clearHistoryCon();
+                            break;
+                        case '':
+                            break;
+                        default:
+                            self.sendRequest(command);
+
                     }
                 };
 
                 self.sendRequest = function(command) {
                     $.get(self.url, {cmd: command}, self.handleResponse);
+                }
+
+                self.showHistory = function() {
+                    for (var i in self.history.list) {
+                        self.appendToHistory(self.history.list[i]);
+                    }
+                }
+
+                self.clearHistoryCon = function() {
+                    self.historyCon.html('');
                 }
 
                 self.handleResponse = function(response) {
@@ -68,31 +90,36 @@
                 };
 
                 self.handleKeyUp = function(e) {
-                    if (e.keyCode == 13) {
-                        self.executeCommand(this.value);
-                        this.value = '';
-                    } else if (e.keyCode == 38 || e.keyCode == 40) {
-                        if (!self.history.list.length) {
-                            return;
-                        }
-
-                        var cur = self.history.cur,
-                            prevCur = cur;
-                        cur = e.keyCode == 40 ? cur + 1 : cur - 1;
-                        if (cur < 0) {
-                            cur = 0;
-                        } else if (cur > self.history.list.length) {
-                            cur = self.history.list.length;
-                        }
-                        if (cur == self.history.list.length) {
-                            this.value = self.history.tmp;
-                        } else {
-                            if (prevCur == self.history.list.length) {
-                                self.history.tmp = this.value;
+                    var KEY_ENTER = 13,
+                        KEY_UPARR = 40,
+                        KEY_DNARR = 38;
+                    switch (e.keyCode) {
+                        case KEY_ENTER:
+                            self.executeCommand(this.value);
+                            this.value = '';
+                            break;
+                        case KEY_UPARR:
+                        case KEY_DNARR:
+                            var cur = self.history.cur,
+                                prevCur = cur,
+                                listLen = self.history.list.length;
+                            if (!listLen) {
+                                break;
                             }
-                            this.value = self.history.list[cur];
-                        }
-                        self.history.cur = cur;
+                            cur = e.keyCode == KEY_UPARR ? cur + 1 : cur - 1;
+                            // cur must be between 0 and listLen
+                            cur = Math.min(listLen, Math.max(cur, 0));
+
+                            if (cur == listLen) {
+                                this.value = self.history.tmp;
+                            } else {
+                                if (prevCur == listLen) {
+                                    self.history.tmp = this.value;
+                                }
+                                this.value = self.history.list[cur];
+                            }
+                            self.history.cur = cur;
+                            break;
                     }
                 };
 
