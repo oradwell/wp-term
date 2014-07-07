@@ -8,10 +8,11 @@ use Ockcyp\WpPostsCli\Exception\PostNotFoundException;
 
 class GotoCommand extends CommandAbstract
 {
-    public function execute()
-    {
-        $this->checkArgumentsValid();
+    public static $usage = '<postname>';
+    protected $name = 'goto';
 
+    public function executeCommand()
+    {
         $post = $this->findPost($this->arguments[0]);
 
         return array(

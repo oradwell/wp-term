@@ -20,6 +20,8 @@ class CommandFactory
     {
         switch ($executable) {
             case 'ls':
+                return static::make('list')
+                    ->setName('ls');
             case 'list':
                 return new ListCommand;
             case 'list-pages':
@@ -30,6 +32,8 @@ class CommandFactory
                     ->addArguments('--posts');
             case 'goto':
                 return new GotoCommand;
+            case 'help':
+                return new HelpCommand;
             default:
                 throw new InvalidCommandException(
                     'Command not found: ' . $executable

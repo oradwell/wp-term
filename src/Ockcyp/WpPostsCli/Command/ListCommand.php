@@ -6,21 +6,23 @@ use Ockcyp\WpPostsCli\PostProvider\PostProviderFactory;
 
 class ListCommand extends CommandAbstract
 {
+    public static $usage = '[--pages|--posts]';
+
     protected static $validArguments = array(
         '--posts',
         '--pages',
+        '--help',
     );
+
+    protected $name = 'list';
 
     /**
      * Execute list command and return the response
      *
      * @return array Response
-     * @throws InvalidCommandArgumentException If has any invalid arguments
      */
-    public function execute()
+    public function executeCommand()
     {
-        $this->checkArgumentsValid();
-
         return array(
             'list' => $this->getPostList(),
         );

@@ -49,8 +49,8 @@
                         && self.history.list[self.history.list.length - 1] != command
                     ) {
                         self.history.list.push(command);
-                        self.history.cur = self.history.list.length;
                     }
+                    self.history.cur = self.history.list.length;
                     self.history.tmp = '';
                     self.appendCommand(command);
                     switch (command.trim()) {

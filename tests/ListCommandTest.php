@@ -43,6 +43,15 @@ class ListCommandTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    public function testReturnsUsage()
+    {
+        $response = $this->listCommand->addArguments('--help')
+            ->execute();
+
+        $expected = array('msg' => 'Usage: list [--pages|--posts]');
+        $this->assertEquals($expected, $response);
+    }
+
     public function testDoesNotReturnPages()
     {
         $response = $this->listCommand->addArguments('--posts')

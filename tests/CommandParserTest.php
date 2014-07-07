@@ -48,6 +48,17 @@ class CommandParserTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Ockcyp\WpPostsCli\Command\GotoCommand', $gotoCommand);
     }
 
+    public function testParsesHelpCommand()
+    {
+        $parser = $this->parser
+            ->parse('help help');
+        $this->assertInstanceOf('Ockcyp\WpPostsCli\Parser\Command', $parser);
+
+        $helpCommand = $parser->get();
+        $this->assertInstanceOf('Ockcyp\WpPostsCli\Command\CommandAbstract', $helpCommand);
+        $this->assertInstanceOf('Ockcyp\WpPostsCli\Command\HelpCommand', $helpCommand);
+    }
+
     public function listCommandProvider()
     {
         return array(

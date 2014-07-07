@@ -26,11 +26,12 @@ class GotoCommandTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('http://www.ockwebs.com/about/', $res['url']);
     }
 
+    /**
+     * @expectedException Ockcyp\WpPostsCli\Exception\PostNotFoundException
+     */
     public function testReturnsPostUrl()
     {
         $res = $this->gotoCommand->addArguments('not-a-post')
             ->execute();
-
-        $this->assertNull($res);
     }
 }
