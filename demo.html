@@ -43,8 +43,11 @@
                 };
 
                 self.executeCommand = function(command) {
-                    // Save the command only if different from last command
-                    if (self.history.list[self.history.list.length - 1] != command) {
+                    // Save the command if not empty string
+                    // and is different from last command
+                    if (command
+                        && self.history.list[self.history.list.length - 1] != command
+                    ) {
                         self.history.list.push(command);
                         self.history.cur = self.history.list.length;
                     }
@@ -61,7 +64,7 @@
                             break;
                         default:
                             self.sendRequest(command);
-
+                            break;
                     }
                 };
 
@@ -121,6 +124,8 @@
                             self.history.cur = cur;
                             break;
                     }
+
+                    return false;
                 };
 
                 return self;
