@@ -10,6 +10,13 @@ class Command
     protected $executable;
     protected $arguments;
 
+    /**
+     * Parse the command
+     *
+     * @param  string $command Command
+     *
+     * @return Command
+     */
     public function parse($command)
     {
         $args = $this->splitArgs($command);
@@ -23,6 +30,11 @@ class Command
         return $this;
     }
 
+    /**
+     * Get the parsed command
+     *
+     * @return CommandAbstract The command
+     */
     public function get()
     {
         try {
@@ -33,6 +45,13 @@ class Command
         }
     }
 
+    /**
+     * Splits the arguments using the white space
+     *
+     * @param  string $command Command
+     *
+     * @return array           List of arguments
+     */
     protected function splitArgs($command)
     {
         if (!trim($command)) {
