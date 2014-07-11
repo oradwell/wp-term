@@ -6,7 +6,18 @@ use Ockcyp\WpPostsCli\Exception\InvalidCommandArgumentException;
 
 abstract class CommandAbstract
 {
+    /**
+     * Command arguments
+     *
+     * @var array
+     */
     protected $arguments = array();
+
+    /**
+     * Accepted arguments
+     *
+     * @var array
+     */
     protected static $validArguments;
 
     /**
@@ -97,6 +108,13 @@ abstract class CommandAbstract
         }
     }
 
+    /**
+     * Prepare the message to be sent
+     *
+     * @param  string $msg Message
+     *
+     * @return array       Response
+     */
     protected static function responseMsg($msg)
     {
         return array('msg' => htmlentities($msg));
