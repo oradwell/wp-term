@@ -3,7 +3,7 @@
 var wpTerm = function(termElem, url) {
     var self = {};
     self.termElem = termElem;
-    self.url = url ? url : 'wp-posts-cli.php';
+    self.url = url ? url : 'wp-term.php';
 
     self.historyCon = self.termElem.find('.term-history');
     self.promptText = self.termElem.find('.term-prompt').text();

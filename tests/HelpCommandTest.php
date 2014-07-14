@@ -1,6 +1,6 @@
 <?php
 
-use Ockcyp\WpPostsCli\Command\HelpCommand;
+use Ockcyp\WpTerm\Command\HelpCommand;
 
 class HelpCommandTest extends PHPUnit_Framework_TestCase
 {

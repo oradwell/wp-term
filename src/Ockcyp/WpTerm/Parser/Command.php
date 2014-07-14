@@ -1,9 +1,9 @@
 <?php
 
-namespace Ockcyp\WpPostsCli\Parser;
+namespace Ockcyp\WpTerm\Parser;
 
-use Ockcyp\WpPostsCli\Command\CommandFactory;
-use Ockcyp\WpPostsCli\Exception\InvalidCommandException;
+use Ockcyp\WpTerm\Command\CommandFactory;
+use Ockcyp\WpTerm\Exception\InvalidCommandException;
 
 class Command
 {

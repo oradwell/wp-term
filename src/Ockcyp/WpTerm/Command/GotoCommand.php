@@ -1,10 +1,10 @@
 <?php
 
-namespace Ockcyp\WpPostsCli\Command;
+namespace Ockcyp\WpTerm\Command;
 
-use Ockcyp\WpPostsCli\PostProvider\PostProviderFactory;
-use Ockcyp\WpPostsCli\Exception\MissingCommandArgumentException;
-use Ockcyp\WpPostsCli\Exception\PostNotFoundException;
+use Ockcyp\WpTerm\PostProvider\PostProviderFactory;
+use Ockcyp\WpTerm\Exception\MissingCommandArgumentException;
+use Ockcyp\WpTerm\Exception\PostNotFoundException;
 
 class GotoCommand extends CommandAbstract
 {

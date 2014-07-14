@@ -1,10 +1,10 @@
 <?php
 
-namespace Ockcyp\WpPostsCli\Command;
+namespace Ockcyp\WpTerm\Command;
 
-use Ockcyp\WpPostsCli\Command\GotoCommand;
-use Ockcyp\WpPostsCli\Command\ListCommand;
-use Ockcyp\WpPostsCli\Exception\InvalidCommandException;
+use Ockcyp\WpTerm\Command\GotoCommand;
+use Ockcyp\WpTerm\Command\ListCommand;
+use Ockcyp\WpTerm\Exception\InvalidCommandException;
 
 class CommandFactory
 {

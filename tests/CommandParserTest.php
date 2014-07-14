@@ -1,6 +1,6 @@
 <?php
 
-use Ockcyp\WpPostsCli\Parser\Command as CommandParser;
+use Ockcyp\WpTerm\Parser\Command as CommandParser;
 
 class CommandParserTest extends PHPUnit_Framework_TestCase
 {
@@ -30,33 +30,33 @@ class CommandParserTest extends PHPUnit_Framework_TestCase
     {
         $parser = $this->parser
             ->parse($command);
-        $this->assertInstanceOf('Ockcyp\WpPostsCli\Parser\Command', $parser);
+        $this->assertInstanceOf('Ockcyp\WpTerm\Parser\Command', $parser);
 
         $listCommand = $parser->get();
-        $this->assertInstanceOf('Ockcyp\WpPostsCli\Command\CommandAbstract', $listCommand);
-        $this->assertInstanceOf('Ockcyp\WpPostsCli\Command\ListCommand', $listCommand);
+        $this->assertInstanceOf('Ockcyp\WpTerm\Command\CommandAbstract', $listCommand);
+        $this->assertInstanceOf('Ockcyp\WpTerm\Command\ListCommand', $listCommand);
     }
 
     public function testParsesGotoCommand()
     {
         $parser = $this->parser
             ->parse('goto about');
-        $this->assertInstanceOf('Ockcyp\WpPostsCli\Parser\Command', $parser);
+        $this->assertInstanceOf('Ockcyp\WpTerm\Parser\Command', $parser);
 
         $gotoCommand = $parser->get();
-        $this->assertInstanceOf('Ockcyp\WpPostsCli\Command\CommandAbstract', $gotoCommand);
-        $this->assertInstanceOf('Ockcyp\WpPostsCli\Command\GotoCommand', $gotoCommand);
+        $this->assertInstanceOf('Ockcyp\WpTerm\Command\CommandAbstract', $gotoCommand);
+        $this->assertInstanceOf('Ockcyp\WpTerm\Command\GotoCommand', $gotoCommand);
     }
 
     public function testParsesHelpCommand()
     {
         $parser = $this->parser
             ->parse('help help');
-        $this->assertInstanceOf('Ockcyp\WpPostsCli\Parser\Command', $parser);
+        $this->assertInstanceOf('Ockcyp\WpTerm\Parser\Command', $parser);
 
         $helpCommand = $parser->get();
-        $this->assertInstanceOf('Ockcyp\WpPostsCli\Command\CommandAbstract', $helpCommand);
-        $this->assertInstanceOf('Ockcyp\WpPostsCli\Command\HelpCommand', $helpCommand);
+        $this->assertInstanceOf('Ockcyp\WpTerm\Command\CommandAbstract', $helpCommand);
+        $this->assertInstanceOf('Ockcyp\WpTerm\Command\HelpCommand', $helpCommand);
     }
 
     public function listCommandProvider()

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ockcyp\WpPostsCli\Entity;
+namespace Ockcyp\WpTerm\Entity;
 
 class Post
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Ockcyp\WpPostsCli\Command;
+namespace Ockcyp\WpTerm\Command;
 
-use Ockcyp\WpPostsCli\Exception\InvalidCommandArgumentException;
+use Ockcyp\WpTerm\Exception\InvalidCommandArgumentException;
 
 abstract class CommandAbstract
 {

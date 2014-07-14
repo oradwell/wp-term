@@ -1,6 +1,6 @@
 <?php
 
-namespace Ockcyp\WpPostsCli\Exception;
+namespace Ockcyp\WpTerm\Exception;
 
 class InvalidCommandException extends \Exception
 {

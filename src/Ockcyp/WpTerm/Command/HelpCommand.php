@@ -1,8 +1,8 @@
 <?php
 
-namespace Ockcyp\WpPostsCli\Command;
+namespace Ockcyp\WpTerm\Command;
 
-use Ockcyp\WpPostsCli\Command\CommandFactory;
+use Ockcyp\WpTerm\Command\CommandFactory;
 
 class HelpCommand extends CommandAbstract
 {

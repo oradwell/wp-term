@@ -1,6 +1,6 @@
 <?php
 
-use Ockcyp\WpPostsCli\Entity\Post;
+use Ockcyp\WpTerm\Entity\Post;
 
 class PostTest extends PHPUnit_Framework_TestCase
 {

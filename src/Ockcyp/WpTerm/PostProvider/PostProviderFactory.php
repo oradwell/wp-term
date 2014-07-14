@@ -1,8 +1,8 @@
 <?php
 
-namespace Ockcyp\WpPostsCli\PostProvider;
+namespace Ockcyp\WpTerm\PostProvider;
 
-use Ockcyp\WpPostsCli\PostProvider\File as FilePostProvider;
+use Ockcyp\WpTerm\PostProvider\File as FilePostProvider;
 
 class PostProviderFactory
 {

@@ -38,7 +38,7 @@
             script.onload = function () {
                 jQuery('.terminal').show();
                 jQuery('.home-link,.term-toggle-link').hide();
-                wpTerm = wpTerm(jQuery('.terminal'), 'http://local-vm/secim/wp-posts-cli.php');
+                wpTerm = wpTerm(jQuery('.terminal'));
                 jQuery('.term-input').on('keyup', wpTerm.handleKeyUp);
             };
 

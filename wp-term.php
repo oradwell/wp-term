@@ -12,7 +12,7 @@ function json_response($array)
 
 $cmd = isset($_GET['cmd']) ? $_GET['cmd'] : '';
 
-use Ockcyp\WpPostsCli\Parser\Command as CommandParser;
+use Ockcyp\WpTerm\Parser\Command as CommandParser;
 
 $commandParser = new CommandParser;
 if (!$commandParser->parse($cmd)) {
