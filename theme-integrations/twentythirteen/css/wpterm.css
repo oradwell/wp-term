@@ -1,0 +1,23 @@
+.terminal {
+    font-family: "Courier New", Courier, monospace;
+    color: #141412;
+    min-height: 230px;
+    width: 100%;
+    display: none;
+}
+.term-history {
+    height:190px; /* header height minus input height */
+    overflow-y:auto;
+}
+.term-input {
+    border: 0;
+    width: calc(100% - 85px); /* subtract prompt width */
+    overflow-x: hidden;
+    font-family: inherit;
+    font-size: inherit;
+}
+.term-toggle-link {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+}
