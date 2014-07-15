@@ -10,11 +10,13 @@
     overflow-y:auto;
 }
 .term-input {
-    border: 0;
+    border: 0 !important;
     width: calc(100% - 85px); /* subtract prompt width */
     overflow-x: hidden;
     font-family: inherit;
     font-size: inherit;
+    background-color: inherit;
+    padding: 0;
 }
 .term-toggle-link {
     position: absolute;
