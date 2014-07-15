@@ -52,6 +52,9 @@ var wpTerm = function(termElem, url) {
             case 'clear':
                 self.clearHistoryCon();
                 break;
+            case 'exit':
+                closeTerm();
+                break;
             case '':
                 break;
             default:

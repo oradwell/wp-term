@@ -44,6 +44,11 @@
 
             head.appendChild(script);
         }
+
+        function closeTerm() {
+            jQuery('.terminal').hide();
+            jQuery('.home-link,.term-toggle-link').show();
+        }
     </script>
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/wpterm.css" />
 </head>
