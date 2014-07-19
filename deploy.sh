@@ -4,7 +4,9 @@
 # WP-Term Deployment Script
 ##
 
+integrations_dir="`dirname $0`/theme-integrations"
 deploy_dir=""
+
 while getopts ":d:" opt
 do
   case $opt in
@@ -17,20 +19,29 @@ do
   esac
 done
 
-if [ -z "$deploy_dir" ]; then
+while [ -z "$deploy_dir" ]
+do
   echo -n "Enter deployment directory: "
   read deploy_dir
-fi
+done
 
 # Relative to absolute path
 deploy_dir=`readlink -m $deploy_dir`
 
 echo "Deployment directory set to: $deploy_dir"
 
-if [ ! -d "$deploy_dir/wp-content/themes" ]; then
+themedir="$deploy_dir/wp-content/themes"
+if [ ! -d "$themedir" ]; then
   echo "Invalid deployment directory. Theme directory"\
-    "'$deploy_dir/wp-content/themes' does not exist."
+    "'$themedir' does not exist." >&2
   exit 1
 fi
+
+for theme in "$integrations_dir/[^common]*"
+do
+  themename=`basename $theme`
+  cp $integrations_dir/common/wpterm.js $themedir/$themename/js/
+  cp -a $theme/* "$themedir/$themename"
+done
 
 exit 0
