@@ -4,6 +4,11 @@
 # WP-Term Deployment Script
 ##
 
+if ! command -v patch > /dev/null 2>&1; then
+  echo "patch command is required for deployment." 1>&2
+  exit 1
+fi
+
 integrations_dir="`dirname $0`/theme-integrations"
 deploy_dir=""
 
@@ -39,9 +44,11 @@ fi
 
 for theme in "$integrations_dir/[^common]*"
 do
+  themeloc=`readlink -m $theme`
   themename=`basename $theme`
   cp $integrations_dir/common/wpterm.js $themedir/$themename/js/
-  cp -a $theme/* "$themedir/$themename"
+  cp -a $theme/css "$themedir/$themename/"
+  patch -N -r - -p1 -d "$deploy_dir" < $themeloc/patch
 done
 
 exit 0

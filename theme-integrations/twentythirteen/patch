@@ -1,0 +1,48 @@
+--- a/wp-content/themes/twentythirteen/header.php
++++ b/wp-content/themes/twentythirteen/header.php
+@@ -28,6 +28,30 @@
+ 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
+ 	<![endif]-->
+ 	<?php wp_head(); ?>
++	<script type="text/javascript">
++		function openTerm() {
++			var head = document.getElementsByTagName('head')[0];
++			var script = document.createElement('script');
++			script.type = 'text/javascript';
++			script.src = "<?php echo get_template_directory_uri(); ?>/js/wpterm.js";
++
++			script.onload = function () {
++				jQuery('.terminal').show();
++				jQuery('.home-link,.term-toggle-link').hide();
++				wpTerm = wpTerm(jQuery('.terminal'));
++				jQuery('.term-input').on('keyup', wpTerm.handleKeyUp)
++					.focus();
++			};
++
++			head.appendChild(script);
++		}
++
++		function closeTerm() {
++			jQuery('.terminal').hide();
++			jQuery('.home-link,.term-toggle-link').show();
++		}
++	</script>
++	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/wpterm.css" />
+ </head>
+ 
+ <body <?php body_class(); ?>>
+@@ -37,6 +61,14 @@
+ 				<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
+ 				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+ 			</a>
++			<div class="terminal">
++				<div class="term-history"></div>
++				<div class="term-cmd-line">
++					<span class="term-prompt">prompt&gt;</span>
++					<input class="term-input" value="" />
++				</div>
++			</div>
++			<a class="term-toggle-link" href="#" onclick="openTerm();return false">Open Terminal</a>
+ 
+ 			<div id="navbar" class="navbar">
+ 				<nav id="site-navigation" class="navigation main-navigation" role="navigation">
