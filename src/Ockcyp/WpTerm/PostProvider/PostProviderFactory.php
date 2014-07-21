@@ -3,6 +3,8 @@
 namespace Ockcyp\WpTerm\PostProvider;
 
 use Ockcyp\WpTerm\PostProvider\File as FilePostProvider;
+use Ockcyp\WpTerm\PostProvider\Database as DatabasePostProvider;
+use PDO;
 
 class PostProviderFactory
 {
@@ -30,10 +32,20 @@ class PostProviderFactory
                     APP_PATH . '/' . static::$config[$postSrc]['path'],
                     'r'
                 );
+
                 return static::$provider = new FilePostProvider($fh);
             case 'db':
-                // not implemented yet
-                return null;
+                $dbConfig = static::$config[$postSrc];
+                $conStr  = $dbConfig['driver'];
+                $conStr .= ':host=' . $dbConfig['host'] . ';';
+                $conStr .= 'dbname=' . $dbConfig['dbname'];
+                $dbh = new PDO(
+                    $conStr,
+                    $dbConfig['username'],
+                    $dbConfig['password']
+                );
+
+                return static::$provider = new DatabasePostProvider($dbh);
         }
     }
 

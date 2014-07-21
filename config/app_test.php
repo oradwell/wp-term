@@ -9,6 +9,7 @@ return array(
     'post_src_db' => array(
         'type' => 'db',
         'driver' => 'mysql',
+        'host' => 'localhost',
         'dbname' => 'wordpress',
         'username' => 'root',
         'password' => '',

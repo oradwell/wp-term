@@ -2,7 +2,7 @@
 
 use Ockcyp\WpTerm\PostProvider\File as FilePostProvider;
 
-class PostProviderTest extends PHPUnit_Framework_TestCase
+class FilePostProviderTest extends PHPUnit_Framework_TestCase
 {
     protected $fh;
     protected $posts;
