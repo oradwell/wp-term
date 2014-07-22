@@ -11,7 +11,7 @@ return array(
         'driver' => 'mysql',
         'host' => 'localhost',
         'dbname' => 'wordpress',
-        'username' => 'root',
-        'password' => '',
+        'username' => 'wpterm',
+        'password' => 'tas3RE',
     ),
 );

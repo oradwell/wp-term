@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'post_src' => 'post_src_file',
+    'post_src' => 'post_src_db',
     'post_src_file' => array(
         'type' => 'file',
         'path' => 'posts.csv',
@@ -11,7 +11,7 @@ return array(
         'driver' => 'mysql',
         'host' => 'localhost',
         'dbname' => 'wordpress',
-        'username' => 'root',
-        'password' => '',
+        'username' => 'wpterm',
+        'password' => 'tas3RE',
     ),
 );
