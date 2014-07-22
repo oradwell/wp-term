@@ -4,6 +4,7 @@ namespace Ockcyp\WpTerm\PostProvider;
 
 use Ockcyp\WpTerm\PostProvider\File as FilePostProvider;
 use Ockcyp\WpTerm\PostProvider\Database as DatabasePostProvider;
+use Ockcyp\WpTerm\Exception\UnsupportedPostSourceTypeException;
 use PDO;
 
 class PostProviderFactory
@@ -17,6 +18,13 @@ class PostProviderFactory
         static::init();
 
         return static::getCurrentProvider();
+    }
+
+    public static function setConfig($config)
+    {
+        static::$config = $config;
+        static::$init = true;
+        static::$provider = null;
     }
 
     protected static function getCurrentProvider()
@@ -47,6 +55,8 @@ class PostProviderFactory
 
                 return static::$provider = new DatabasePostProvider($dbh);
         }
+
+        throw new UnsupportedPostSourceTypeException();
     }
 
     protected static function init()
