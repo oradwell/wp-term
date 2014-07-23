@@ -4,6 +4,7 @@ namespace Ockcyp\WpTerm\PostProvider;
 
 use Ockcyp\WpTerm\PostProvider\File as FilePostProvider;
 use Ockcyp\WpTerm\PostProvider\Database as DatabasePostProvider;
+use Ockcyp\WpTerm\Config\Config;
 use Ockcyp\WpTerm\Exception\UnsupportedPostSourceTypeException;
 use PDO;
 
@@ -65,7 +66,7 @@ class PostProviderFactory
             return;
         }
 
-        static::$config = require APP_PATH . '/config/app.php';
+        static::$config = Config::get();
         static::$init = true;
     }
 }

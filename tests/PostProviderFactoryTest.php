@@ -1,6 +1,7 @@
 <?php
 
 use Ockcyp\WpTerm\PostProvider\PostProviderFactory;
+use Ockcyp\WpTerm\Config\Config;
 
 class PostProviderFactoryTest extends PHPUnit_Framework_TestCase
 {
@@ -8,7 +9,7 @@ class PostProviderFactoryTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->config = require APP_PATH . '/config/app_test.php';
+        $this->config = Config::get('test');
     }
 
     public function testMakesDatabasePostProvider()
