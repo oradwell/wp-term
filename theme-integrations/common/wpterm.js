@@ -57,6 +57,9 @@ var wpTerm = function(termElem, url) {
                 break;
             case '':
                 break;
+            case 'help':
+                var res = {list: ['history', 'clear', 'exit']};
+                self.appendResponse(res);
             default:
                 self.sendRequest(command);
                 break;
