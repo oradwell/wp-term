@@ -3,12 +3,16 @@
 namespace Ockcyp\WpTerm\Command;
 
 use Ockcyp\WpTerm\Command\CommandFactory;
+use Ockcyp\WpTerm\Exception\InvalidCommandException;
 
 class HelpCommand extends CommandAbstract
 {
     public static $usage = '[<command name>]';
 
     protected static $commands = array(
+        'history',
+        'clear',
+        'exit',
         'list',
         'goto',
         'help',
@@ -37,8 +41,13 @@ class HelpCommand extends CommandAbstract
     {
         $usageList = array();
         foreach (static::$commands as $command) {
-            $cmdClass = get_class(CommandFactory::make($command));
-            $usageList[] = htmlentities($command . ' ' . $cmdClass::$usage);
+            try {
+                $cmdInstance = CommandFactory::make($command);
+                $cmdClass = get_class($cmdInstance);
+                $usageList[] = htmlentities($command . ' ' . $cmdClass::$usage);
+            } catch (InvalidCommandException $e) {
+                $usageList[] = $command;
+            }
         }
 
         return $usageList;
