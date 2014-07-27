@@ -22,13 +22,13 @@ class ListCommandTest extends PHPUnit_Framework_TestCase
      */
     public function testGivesInvalidArgumentException()
     {
-        $this->listCommand->addArguments('--invalid-argument')
+        $this->listCommand->addArgument('--invalid-argument')
             ->execute();
     }
 
     public function testReturnsPagesOnly()
     {
-        $response = $this->listCommand->addArguments('--pages')
+        $response = $this->listCommand->addArgument('--pages')
             ->execute();
 
         $this->assertNotEmpty($response);
@@ -45,7 +45,7 @@ class ListCommandTest extends PHPUnit_Framework_TestCase
 
     public function testReturnsUsage()
     {
-        $response = $this->listCommand->addArguments('--help')
+        $response = $this->listCommand->addArgument('--help')
             ->execute();
 
         $expected = array('msg' => 'Usage: list [--pages|--posts]');
@@ -54,7 +54,7 @@ class ListCommandTest extends PHPUnit_Framework_TestCase
 
     public function testDoesNotReturnPages()
     {
-        $response = $this->listCommand->addArguments('--posts')
+        $response = $this->listCommand->addArgument('--posts')
             ->execute();
 
         $this->assertNotEmpty($response);

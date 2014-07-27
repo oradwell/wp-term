@@ -39,7 +39,7 @@ class Command
     {
         try {
             return CommandFactory::make($this->executable)
-                ->addArguments($this->arguments);
+                ->addArgumentArray($this->arguments);
         } catch (InvalidCommandException $e) {
             return null;
         }

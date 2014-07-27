@@ -33,10 +33,10 @@ class CommandFactory
                 return new ListCommand;
             case 'list-pages':
                 return static::make('list')
-                    ->addArguments('--pages');
+                    ->addArgument('--pages');
             case 'list-posts':
                 return static::make('list')
-                    ->addArguments('--posts');
+                    ->addArgument('--posts');
             case 'goto':
                 return new GotoCommand;
             case 'help':

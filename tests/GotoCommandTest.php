@@ -19,7 +19,7 @@ class GotoCommandTest extends PHPUnit_Framework_TestCase
 
     public function testReturnsNullWhenPostNotFound()
     {
-        $res = $this->gotoCommand->addArguments('about')
+        $res = $this->gotoCommand->addArgument('about')
             ->execute();
 
         $this->assertNotEmpty($res);
@@ -31,7 +31,7 @@ class GotoCommandTest extends PHPUnit_Framework_TestCase
      */
     public function testReturnsPostUrl()
     {
-        $res = $this->gotoCommand->addArguments('not-a-post')
+        $res = $this->gotoCommand->addArgument('not-a-post')
             ->execute();
     }
 }

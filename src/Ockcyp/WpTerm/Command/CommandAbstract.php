@@ -72,25 +72,28 @@ abstract class CommandAbstract
     }
 
     /**
-     * Adds arguments to the command
+     * Adds argument to the command
      *
-     * @param string|array $args Arguments to add
+     * @param string $arg Argument to add
      */
-    public function addArguments($args)
+    public function addArgument($arg)
     {
-        if (!$args) {
-            return $this;
-        }
-
-        if (!is_array($args)) {
-            $args = array($args);
-        }
-
-        $this->arguments = array_merge($this->arguments, $args);
+        $this->arguments[] = $arg;
 
         return $this;
     }
 
+    /**
+     * Adds array of arguments to the command
+     *
+     * @param array $args Arguments to add
+     */
+    public function addArgumentArray($args)
+    {
+        $this->arguments = array_merge($this->arguments, $args);
+
+        return $this;
+    }
     /**
      * Check if an argument is given
      *

@@ -22,7 +22,7 @@ class HelpCommandTest extends PHPUnit_Framework_TestCase
     public function testReturnsItsOwnUsage()
     {
         $response = $this->helpCommand
-            ->addArguments('help')
+            ->addArgument('help')
             ->execute();
 
         $this->assertNotEmpty($response);
@@ -35,7 +35,7 @@ class HelpCommandTest extends PHPUnit_Framework_TestCase
     public function testThrowsInvalidCommandException()
     {
         $this->helpCommand
-            ->addArguments('not-a-command')
+            ->addArgument('not-a-command')
             ->execute();
     }
 }
