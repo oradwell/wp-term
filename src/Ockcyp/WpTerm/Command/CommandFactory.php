@@ -2,12 +2,19 @@
 
 namespace Ockcyp\WpTerm\Command;
 
-use Ockcyp\WpTerm\Command\GotoCommand;
-use Ockcyp\WpTerm\Command\ListCommand;
 use Ockcyp\WpTerm\Exception\InvalidCommandException;
 
 class CommandFactory
 {
+    public static $commandList = array(
+        'history',
+        'clear',
+        'exit',
+        'list',
+        'goto',
+        'help',
+    );
+
     /**
      * Get instance of a Command class
      *
@@ -35,6 +42,11 @@ class CommandFactory
             case 'help':
                 return new HelpCommand;
             default:
+                // If a valid command but no class mapping defined
+                // instantiate a JsCommand and set name to executable
+                if (in_array($executable, static::$commandList)) {
+                    return new JsCommand($executable);
+                }
                 throw new InvalidCommandException(
                     'Command not found: ' . $executable
                 );

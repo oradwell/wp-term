@@ -7,6 +7,13 @@ use Ockcyp\WpTerm\Exception\InvalidCommandArgumentException;
 abstract class CommandAbstract
 {
     /**
+     * Usage of the command
+     *
+     * @var string
+     */
+    public static $usage;
+
+    /**
      * Command arguments
      *
      * @var array
@@ -56,9 +63,12 @@ abstract class CommandAbstract
      */
     public function usage()
     {
-        return static::responseMsg('Usage: ' .
-            $this->name . ' ' . static::$usage
-        );
+        $msg = 'Usage: ' . $this->name;
+        if (static::$usage) {
+            $msg .= ' ' . static::$usage;
+        }
+
+        return static::responseMsg($msg);
     }
 
     /**

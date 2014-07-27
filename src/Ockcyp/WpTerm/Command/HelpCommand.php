@@ -9,15 +9,6 @@ class HelpCommand extends CommandAbstract
 {
     public static $usage = '[<command name>]';
 
-    protected static $commands = array(
-        'history',
-        'clear',
-        'exit',
-        'list',
-        'goto',
-        'help',
-    );
-
     protected $name = 'help';
 
     /**
@@ -40,14 +31,9 @@ class HelpCommand extends CommandAbstract
     protected function getCommandUsages()
     {
         $usageList = array();
-        foreach (static::$commands as $command) {
-            try {
-                $cmdInstance = CommandFactory::make($command);
-                $cmdClass = get_class($cmdInstance);
-                $usageList[] = htmlentities($command . ' ' . $cmdClass::$usage);
-            } catch (InvalidCommandException $e) {
-                $usageList[] = $command;
-            }
+        foreach (CommandFactory::$commandList as $command) {
+            $cmdClass = get_class(CommandFactory::make($command));
+            $usageList[] = htmlentities($command . ' ' . $cmdClass::$usage);
         }
 
         return $usageList;
