@@ -28,4 +28,14 @@ class HelpCommandTest extends PHPUnit_Framework_TestCase
         $this->assertNotEmpty($response);
         $this->assertNotEmpty($response['msg']);
     }
+
+    /**
+     * @expectedException Ockcyp\WpTerm\Exception\InvalidCommandException
+     */
+    public function testThrowsInvalidCommandException()
+    {
+        $this->helpCommand
+            ->addArguments('not-a-command')
+            ->execute();
+    }
 }
