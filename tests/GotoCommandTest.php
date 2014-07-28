@@ -1,11 +1,13 @@
 <?php
 
 use Ockcyp\WpTerm\Command\GotoCommand;
+use Ockcyp\WpTerm\Config\Config;
 
 class GotoCommandTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
+        Config::get('test');
         $this->gotoCommand = new GotoCommand;
     }
 

@@ -7,12 +7,12 @@ use Ockcyp\WpTerm\Exception\InvalidCommandException;
 class CommandFactory
 {
     public static $commandList = array(
-        'history',
         'clear',
         'exit',
-        'list',
         'goto',
         'help',
+        'history',
+        'list',
     );
 
     /**

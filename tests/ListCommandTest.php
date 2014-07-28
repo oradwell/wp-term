@@ -1,11 +1,13 @@
 <?php
 
 use Ockcyp\WpTerm\Command\ListCommand;
+use Ockcyp\WpTerm\Config\Config;
 
 class ListCommandTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
+        Config::get('test');
         $this->listCommand = new ListCommand;
     }
 
