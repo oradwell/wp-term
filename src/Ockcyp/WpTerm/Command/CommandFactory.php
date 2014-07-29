@@ -41,6 +41,8 @@ class CommandFactory
                 return new GotoCommand;
             case 'help':
                 return new HelpCommand;
+            case 'complete':
+                return new CompleteCommand;
             default:
                 // If a valid command but no class mapping defined
                 // instantiate a JsCommand and set name to executable

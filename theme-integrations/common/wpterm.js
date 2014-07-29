@@ -18,20 +18,14 @@ var wpTerm = function(termElem, url) {
         self.historyCon[0].scrollTop = self.historyCon[0].scrollHeight;
     };
 
+    self.appendToHistoryArray = function(list) {
+        for (var i = 0; i < list.length; i++) {
+            self.appendToHistory(list[i]);
+        }
+    }
+
     self.appendCommand = function(string) {
         self.appendToHistory(self.promptText + ' ' + string);
-    };
-
-    self.appendResponse = function(response) {
-        if (response.list && response.list.length) {
-            for (var i = 0; i < response.list.length; i++) {
-                self.appendToHistory(response.list[i]);
-            }
-        } else if (response.msg) {
-            self.appendToHistory(response.msg);
-        } else if (response.url) {
-            self.appendToHistory('Redirecting to: ' + response.url);
-        }
     };
 
     self.executeCommand = function(command) {
@@ -63,14 +57,16 @@ var wpTerm = function(termElem, url) {
         }
     };
 
-    self.sendRequest = function(command) {
-        jQuery.get(self.url, {cmd: command}, self.handleResponse);
+    self.sendRequest = function(command, callback) {
+        if (typeof callback == 'undefined') {
+            callback = self.handleResponse;
+        }
+
+        jQuery.get(self.url, {cmd: command}, callback);
     }
 
     self.showHistory = function() {
-        for (var i in self.history.list) {
-            self.appendToHistory(self.history.list[i]);
-        }
+        self.appendToHistoryArray(self.history.list);
     }
 
     self.clearHistoryCon = function() {
@@ -78,13 +74,59 @@ var wpTerm = function(termElem, url) {
     }
 
     self.handleResponse = function(response) {
-        self.appendResponse(response);
+        if (response.list && response.list.length) {
+            self.appendToHistoryArray(response.list);
+        } else if (response.msg) {
+            self.appendToHistory(response.msg);
+        } else if (response.url) {
+            self.appendToHistory('Redirecting to: ' + response.url);
+        }
+
         if (response.url) {
             var url = response.url;
             setTimeout(function() {
                 document.location.href = url;
             }, 500);
         }
+    };
+
+    self.handleCompleteResponse = function(response, input) {
+        if (response.complete) {
+            // New cursor position: complete + blank space
+            var newCurPos = input.selectionStart + response.complete.length + 1;
+            // Beginning part
+            input.value = input.value.substr(0, input.selectionStart)
+                // complete + blank space
+                + response.complete + ' '
+                // ending part
+                + input.value.substr(input.selectionEnd);
+
+            // Move the cursor
+            input.selectionStart = newCurPos;
+            input.selectionEnd = newCurPos;
+        } else if (response.list && response.list.length > 0) {
+            // Remove complete from command before adding to list
+            self.appendCommand(response.cmd.substr(9));
+            // Show the list
+            self.appendToHistoryArray(response.list);
+        }
+    };
+
+    self.handleKeyDown = function(e) {
+        var KEY_TAB = 9,
+            inputElem = this;
+        if (e.keyCode != KEY_TAB) {
+            return;
+        }
+
+        self.sendRequest(
+            'complete ' + inputElem.value.substr(0, inputElem.selectionStart),
+            function(response) {
+                self.handleCompleteResponse(response, inputElem);
+            }
+        );
+
+        return false;
     };
 
     self.handleKeyUp = function(e) {

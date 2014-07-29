@@ -26,6 +26,7 @@ if (!$command) {
 
 try {
     $result = $command->execute();
+    $result['cmd'] = $cmd;
 } catch (Exception $e) {
     $result = array('msg' => $e->getMessage());
 }

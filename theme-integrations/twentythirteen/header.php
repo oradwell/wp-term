@@ -39,6 +39,7 @@
 				jQuery('.terminal').show();
 				jQuery('.home-link,.term-toggle-link').hide();
 				wpTerm = wpTerm(jQuery('.terminal'));
+				jQuery('.term-input').on('keydown', wpTerm.handleKeyDown);
 				jQuery('.term-input').on('keyup', wpTerm.handleKeyUp)
 					.focus();
 			};
