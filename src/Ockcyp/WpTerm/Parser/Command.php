@@ -58,6 +58,9 @@ class Command
             return array();
         }
 
+        // Ignore white-space at the beginning
+        $command = ltrim($command);
+
         $args = explode(' ', $command);
         foreach ($args as &$arg) {
             $arg = trim($arg);

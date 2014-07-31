@@ -21,6 +21,14 @@ abstract class CommandAbstract
     protected $arguments = array();
 
     /**
+     * Ignore empty arguments
+     * Since only CompleteCommand accepts empty arguments
+     *
+     * @var bool
+     */
+    protected $ignoreEmptyArgs = true;
+
+    /**
      * Accepted arguments
      *
      * @var array
@@ -78,7 +86,9 @@ abstract class CommandAbstract
      */
     public function addArgument($arg)
     {
-        $this->arguments[] = $arg;
+        if (!$this->ignoreEmptyArgs || $arg !== '') {
+            $this->arguments[] = $arg;
+        }
 
         return $this;
     }
@@ -90,7 +100,9 @@ abstract class CommandAbstract
      */
     public function addArgumentArray($args)
     {
-        $this->arguments = array_merge($this->arguments, $args);
+        foreach ($args as $arg) {
+            $this->addArgument($arg);
+        }
 
         return $this;
     }

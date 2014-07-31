@@ -14,6 +14,8 @@ class CompleteCommand extends CommandAbstract
 
     protected $completeString;
 
+    protected $ignoreEmptyArgs = false;
+
     /**
      * Execute complete command and return the response
      *
@@ -23,7 +25,7 @@ class CompleteCommand extends CommandAbstract
     {
         $argCount = count($this->arguments);
         if ($argCount > 1) {
-            $asd = $this->findPostsStartingWith(end($this->arguments));
+            $asd = $this->findPostsStartingWith($this->arguments[$argCount - 1]);
         } elseif ($argCount == 0) {
             $asd = $this->findCommandsStartingWith('');
         } else {
@@ -78,10 +80,18 @@ class CompleteCommand extends CommandAbstract
     }
 
     /**
-     * Always
+     * Removes empty arguments until a non-empty argument is reached
      */
     protected function checkArgumentsValid()
     {
-        return;
+        foreach ($this->arguments as $index => $arg) {
+            if (strlen($arg) > 0) {
+                array_splice($this->arguments, 0, $index);
+                return;
+            }
+        }
+
+        // If no non-empty argument found
+        $this->arguments = array();
     }
 }

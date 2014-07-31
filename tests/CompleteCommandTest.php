@@ -28,6 +28,20 @@ class CompleteCommandTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $res);
     }
 
+    public function testReturnsListEvenWhenThereAreEmptyArgs()
+    {
+        $res = $this->completeCommand->addArgument('')
+            ->addArgument('h')
+            ->execute();
+
+        $this->assertNotEmpty($res);
+        $expected = array('list' => array(
+            'help', // finds hELP
+            'history', // finds hISTORY
+        ));
+        $this->assertEquals($expected, $res);
+    }
+
     public function testReturnsListForMultipleCommandMatches()
     {
         $res = $this->completeCommand->addArgument('h')

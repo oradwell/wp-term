@@ -23,6 +23,15 @@ class CommandParserTest extends PHPUnit_Framework_TestCase
         $this->assertNull($this->parser->parse('not-a-command')->get());
     }
 
+    public function testIgnoresWhitespaceAtTheBeginning()
+    {
+        $parser = $this->parser->parse(" \t list");
+
+        $listCommand = $parser->get();
+        $this->assertInstanceOf('Ockcyp\WpTerm\Command\CommandAbstract', $listCommand);
+        $this->assertInstanceOf('Ockcyp\WpTerm\Command\ListCommand', $listCommand);
+    }
+
     /**
      * @dataProvider listCommandProvider
      */
