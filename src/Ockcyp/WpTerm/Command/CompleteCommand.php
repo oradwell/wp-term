@@ -6,20 +6,31 @@ use Ockcyp\WpTerm\PostProvider\PostProviderFactory;
 
 class CompleteCommand extends CommandAbstract
 {
+    /**
+     * Usage details of the command
+     *
+     * @var string
+     */
     public static $usage = '<command to complete>';
 
+    /**
+     * Name of the command used when printing usage
+     *
+     * @var string
+     */
     protected $name = 'complete';
 
-    protected $completeType;
-
-    protected $completeString;
-
+    /**
+     * Whether to ignore empty arguments
+     *
+     * @var boolean
+     */
     protected $ignoreEmptyArgs = false;
 
     /**
      * Execute complete command and return the response
      *
-     * @return array Response
+     * @return array|string Depending on number of values matched
      */
     public function executeCommand()
     {
@@ -43,6 +54,13 @@ class CompleteCommand extends CommandAbstract
         );
     }
 
+    /**
+     * Find posts starting with the given parameter
+     *
+     * @param  string $string Beginning of the post
+     *
+     * @return array|string Depending on number of posts matched
+     */
     protected function findPostsStartingWith($string)
     {
         $postProvider = PostProviderFactory::make();
@@ -54,6 +72,13 @@ class CompleteCommand extends CommandAbstract
         return $this->matchBeginning($string, $postList);
     }
 
+    /**
+     * Find commands starting with the given parameter
+     *
+     * @param  string $string Beginning of the command
+     *
+     * @return array|string Depending on number of commands matched
+     */
     protected function findCommandsStartingWith($string)
     {
         $commandList = CommandFactory::$commandList;
@@ -61,6 +86,14 @@ class CompleteCommand extends CommandAbstract
         return $this->matchBeginning($string, $commandList);
     }
 
+    /**
+     * Find values starting with the given parameter
+     *
+     * @param  string $string   Beginning of the command
+     * @param  array  $haystack List of possible values that can be accepted
+     *
+     * @return array|string Depending on number of values matched
+     */
     protected function matchBeginning($string, $haystack)
     {
         $emptyString = strlen($string) == 0;
