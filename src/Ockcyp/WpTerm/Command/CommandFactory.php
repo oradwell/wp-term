@@ -6,6 +6,11 @@ use Ockcyp\WpTerm\Exception\InvalidCommandException;
 
 class CommandFactory
 {
+    /**
+     * List of available commands
+     *
+     * @var array
+     */
     public static $commandList = array(
         'clear',
         'exit',

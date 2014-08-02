@@ -6,14 +6,29 @@ use Ockcyp\WpTerm\PostProvider\PostProviderFactory;
 
 class ListCommand extends CommandAbstract
 {
+    /**
+     * Usage details of the command
+     *
+     * @var string
+     */
     public static $usage = '[--pages|--posts]';
 
+    /**
+     * Accepted arguments
+     *
+     * @var array
+     */
     protected static $validArguments = array(
         '--posts',
         '--pages',
         '--help',
     );
 
+    /**
+     * Name of the command used when printing usage
+     *
+     * @var string
+     */
     protected $name = 'list';
 
     /**
@@ -28,6 +43,11 @@ class ListCommand extends CommandAbstract
         );
     }
 
+    /**
+     * Gets list of posts using the post provider
+     *
+     * @return array List of posts
+     */
     protected function getPostList()
     {
         $posts = PostProviderFactory::make();
@@ -43,6 +63,13 @@ class ListCommand extends CommandAbstract
         return $postList;
     }
 
+    /**
+     * Check whether the post is filtered out by arguments
+     *
+     * @param  string  $post Post name
+     *
+     * @return boolean       True if post is filtered out
+     */
     protected function isPostFiltered($post)
     {
         if ($this->hasArgument('--posts')

@@ -7,6 +7,11 @@ use Ockcyp\WpTerm\Exception\InvalidCommandException;
 
 class HelpCommand extends CommandAbstract
 {
+    /**
+     * Usage details of the command
+     *
+     * @var string
+     */
     public static $usage = '[<command name>]';
 
     protected $name = 'help';
@@ -28,6 +33,11 @@ class HelpCommand extends CommandAbstract
         );
     }
 
+    /**
+     * Get usage information of all the commands defined in CommandFactory
+     *
+     * @return array List of usages
+     */
     protected function getCommandUsages()
     {
         $usageList = array();
@@ -39,6 +49,9 @@ class HelpCommand extends CommandAbstract
         return $usageList;
     }
 
+    /**
+     * Always valid
+     */
     protected function checkArgumentsValid()
     {
         return;
