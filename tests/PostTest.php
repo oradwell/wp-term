@@ -1,20 +1,29 @@
 <?php
 
 use Ockcyp\WpTerm\Entity\Post;
+use Ockcyp\WpTerm\Config\Config;
 
 class PostTest extends PHPUnit_Framework_TestCase
 {
+    public $config;
+
+    public function setUp()
+    {
+        $this->config = Config::get('test');
+    }
+
     public function testSetsHostname()
     {
-        $hostname = 'http://www.google.com';
+        $config = $this->config;
+        $config['hostname'] = 'http://www.google.com';
 
         $post = new Post;
         $post->type = 'page';
         $post->postname = 'me-and-my-dog';
-        $post->setHostName($hostname);
+        $post->setConfig($config);
 
         $this->assertEquals(
-            $hostname . '/' . $post->postname . '/',
+            $config['hostname'] . '/' . $post->postname . '/',
             $post->getPostUrl()
         );
     }
@@ -24,7 +33,10 @@ class PostTest extends PHPUnit_Framework_TestCase
      */
     public function testPostUrlStructure(Post $post, $structure, $expected)
     {
-        $post->setPermalinkStructure($structure);
+        $config = $this->config;
+        $config['permalink_structure'] = $structure;
+        $config['hostname'] = '';
+        $post->setConfig($config);
 
         $this->assertEquals($expected, $post->getPostUrl());
     }
@@ -39,7 +51,6 @@ class PostTest extends PHPUnit_Framework_TestCase
         $post->day = '02';
         $post->postname = 'me-and-my-dog';
         $post->type = 'post';
-        $post->setHostName('');
 
         return array(
             array(

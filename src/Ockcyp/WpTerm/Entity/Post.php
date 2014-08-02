@@ -2,6 +2,8 @@
 
 namespace Ockcyp\WpTerm\Entity;
 
+use Ockcyp\WpTerm\Config\Config;
+
 class Post
 {
     /**
@@ -60,37 +62,32 @@ class Post
     );
 
     /**
-     * Hostname of the website to be used in generated urls
+     * Config
      *
-     * @var string
+     * @var array
      */
-    protected $hostname = 'http://www.ockwebs.com';
+    protected $config;
 
     /**
-     * URL structure of permalink as seen in WordPress Permalink Settings
-     *
-     * @var string
+     * Constructor
      */
-    protected $permalinkStructure = '/%year%/%monthnum%/%postname%/';
-
-    /**
-     * Sets hostname
-     *
-     * @param string $hostname Hostname
-     */
-    public function setHostName($hostname)
+    public function __construct()
     {
-        $this->hostname = $hostname;
+        $config = Config::get();
+
+        $this->setConfig($config);
     }
 
     /**
-     * Sets permalink structure
+     * Sets config
      *
-     * @param string $structure Permalink structure
+     * @param string $config Config
      */
-    public function setPermalinkStructure($structure)
+    public function setConfig($config)
     {
-        $this->permalinkStructure = $structure;
+        $this->config = $config;
+
+        return $this;
     }
 
     /**
@@ -100,7 +97,7 @@ class Post
      */
     public function getPostUrl()
     {
-        return $this->hostname . $this->getUrlPath();
+        return $this->config['hostname'] . $this->getUrlPath();
     }
 
     protected function getUrlPath()
@@ -117,7 +114,7 @@ class Post
         $urlPath = str_replace(
             static::getPermalinkTokens(),
             $this->getPermalinkTokenValues(),
-            $this->permalinkStructure
+            $this->config['permalink_structure']
         );
 
         return $urlPath;

@@ -1,6 +1,8 @@
 <?php
 
 return array(
+    'hostname' => 'http://www.ockwebs.com',
+    'permalink_structure' => '/%year%/%monthnum%/%postname%/',
     'post_src' => 'post_src_db',
     'post_src_file' => array(
         'type' => 'file',
