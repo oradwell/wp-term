@@ -7,7 +7,18 @@ use Ockcyp\WpTerm\Exception\InvalidCommandException;
 
 class Command
 {
+    /**
+     * Name of the command executable
+     *
+     * @var string
+     */
     protected $executable;
+
+    /**
+     * List of arguments
+     *
+     * @var array
+     */
     protected $arguments;
 
     /**

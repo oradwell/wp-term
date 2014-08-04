@@ -6,6 +6,11 @@ use Ockcyp\WpTerm\Entity\Post;
 
 abstract class PostProviderAbstract implements \Iterator
 {
+    /**
+     * Get instance of Post class
+     *
+     * @return Post
+     */
     protected function getPostInstance()
     {
         $post = new Post;

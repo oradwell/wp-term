@@ -10,10 +10,32 @@ use PDO;
 
 class PostProviderFactory
 {
+    /**
+     * Initialised flag
+     *
+     * @var boolean
+     */
     protected static $init = false;
+
+    /**
+     * Config parameters
+     *
+     * @var array
+     */
     protected static $config = null;
+
+    /**
+     * Post provider
+     *
+     * @var PostProviderAbstract
+     */
     protected static $provider = null;
 
+    /**
+     * Makes a post provider that is defined in the config
+     *
+     * @return PostProviderAbstract
+     */
     public static function make()
     {
         static::init();
@@ -21,6 +43,11 @@ class PostProviderFactory
         return static::getCurrentProvider();
     }
 
+    /**
+     * Sets the config used in the class
+     *
+     * @param array $config Config parameters
+     */
     public static function setConfig($config)
     {
         static::$config = $config;
@@ -28,6 +55,11 @@ class PostProviderFactory
         static::$provider = null;
     }
 
+    /**
+     * Returns the post provider set in the config
+     *
+     * @return PostProviderAbstract
+     */
     protected static function getCurrentProvider()
     {
         if (static::$provider) {
@@ -60,6 +92,9 @@ class PostProviderFactory
         throw new UnsupportedPostSourceTypeException();
     }
 
+    /**
+     * Initialises the class by getting the config
+     */
     protected static function init()
     {
         if (static::$init) {
