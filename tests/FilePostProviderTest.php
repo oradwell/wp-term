@@ -1,5 +1,6 @@
 <?php
 
+use Ockcyp\WpTerm\Config\Config;
 use Ockcyp\WpTerm\PostProvider\File as FilePostProvider;
 
 class FilePostProviderTest extends PHPUnit_Framework_TestCase
@@ -9,7 +10,8 @@ class FilePostProviderTest extends PHPUnit_Framework_TestCase
 
     public function __construct($name = null, $data = array(), $dataName = '')
     {
-        $this->fh = fopen(APP_PATH . '/posts.csv', 'r');
+        $config = Config::get('test');
+        $this->fh = fopen(APP_PATH . '/' . $config['post_src_file']['path'], 'r');
         $this->posts = new FilePostProvider($this->fh);
 
         parent::__construct($name, $data, $dataName);

@@ -1,5 +1,6 @@
 <?php
 
+use Ockcyp\WpTerm\Config\Config;
 use Ockcyp\WpTerm\PostProvider\Database as DatabasePostProvider;
 
 class DatabasePostProviderTest extends PHPUnit_Framework_TestCase
@@ -9,11 +10,18 @@ class DatabasePostProviderTest extends PHPUnit_Framework_TestCase
 
     public function __construct($name = null, $data = array(), $dataName = '')
     {
+        $config = Config::get('test');
+
+        $dbConfig = $config['post_src_db'];
+        $conStr  = $dbConfig['driver'];
+        $conStr .= ':host=' . $dbConfig['host'] . ';';
+        $conStr .= 'dbname=' . $dbConfig['dbname'];
         $this->dbh = new PDO(
-            'mysql:host=localhost;dbname=ockwebs',
-            'root',
-            '1234'
+            $conStr,
+            $dbConfig['username'],
+            $dbConfig['password']
         );
+
         $this->posts = new DatabasePostProvider($this->dbh);
 
         parent::__construct($name, $data, $dataName);
