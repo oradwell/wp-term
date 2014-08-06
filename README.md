@@ -10,3 +10,20 @@ Demo
 ![demo.gif](https://raw.githubusercontent.com/ockcyp/wp-term/master/demo.gif)
 
 GIF image recorded using [ScreenToGif](http://screentogif.codeplex.com/)
+
+Configuration
+-------------
+Configuration is stored in `config/` directory as `app.php` for production
+and `app_test.php` for unit tests.
+
+Deployment
+----------
+Requirements
+* Linux
+* patch command
+* twentythirteen theme
+
+Execute the following command:
+```
+./deploy.sh -d /path/to/wordpress
+```
