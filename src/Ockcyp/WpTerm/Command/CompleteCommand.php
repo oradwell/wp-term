@@ -30,27 +30,28 @@ class CompleteCommand extends CommandAbstract
     /**
      * Execute complete command and return the response
      *
-     * @return array|string Depending on number of values matched
+     * @return array Response array
      */
     public function executeCommand()
     {
         $argCount = count($this->arguments);
-        if ($argCount > 1) {
-            $asd = $this->findPostsStartingWith($this->arguments[$argCount - 1]);
+        $lastArg = end($this->arguments);
+        if ($argCount > 1 && $this->arguments[0] !== 'help') {
+            $match = $this->findPostsStartingWith($lastArg);
         } elseif ($argCount == 0) {
-            $asd = $this->findCommandsStartingWith('');
+            $match = $this->findCommandsStartingWith('');
         } else {
-            $asd = $this->findCommandsStartingWith($this->arguments[0]);
+            $match = $this->findCommandsStartingWith($lastArg);
         }
 
-        if (!is_array($asd)) {
+        if (!is_array($match)) {
             return array(
-                'complete' => $asd,
+                'complete' => $match,
             );
         }
 
         return array(
-            'list' => $asd,
+            'list' => $match,
         );
     }
 
