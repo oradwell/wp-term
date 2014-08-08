@@ -97,16 +97,18 @@ class CompleteCommand extends CommandAbstract
      */
     protected function matchBeginning($string, $haystack)
     {
-        $emptyString = strlen($string) == 0;
-
-        $matchedList = array();
-        foreach ($haystack as $name) {
-            if ($emptyString || strpos($name, $string) === 0) {
-                $matchedList[] = $name;
+        if (strlen($string) === 0) {
+            $matchedList = $haystack;
+        } else {
+            $matchedList = array();
+            foreach ($haystack as $name) {
+                if (strpos($name, $string) === 0) {
+                    $matchedList[] = $name;
+                }
             }
         }
 
-        if (count($matchedList) == 1) {
+        if (count($matchedList) === 1) {
             return substr($matchedList[0], strlen($string));
         }
 
