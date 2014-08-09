@@ -18,7 +18,8 @@ and `app_test.php` for unit tests.
 
 Deployment
 ----------
-Requirements
+Requirements:
+* WordPress
 * Linux
 * patch command
 * twentythirteen theme
