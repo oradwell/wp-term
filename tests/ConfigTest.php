@@ -15,7 +15,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
     public function testResetsEnvironment()
     {
         Config::get('test');
-        Config::getEnv();
+        $this->assertEquals('test', Config::getEnv());
 
         Config::clear();
         $this->assertNull(Config::getEnv());
