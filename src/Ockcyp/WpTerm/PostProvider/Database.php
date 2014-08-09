@@ -145,7 +145,8 @@ class Database extends PostProviderAbstract
         $sql  = "SELECT `ID`, YEAR(`post_date`), MONTH(`post_date`),";
         $sql .= " DAY(`post_date`), `post_name`, `post_type`";
         $sql .= " FROM `wp_posts`";
-        $sql .= " WHERE post_type IN ('post', 'page') AND post_name != ''";
+        $sql .= " WHERE post_type IN ('post', 'page')";
+        $sql .= " AND post_status = 'publish' AND post_name != ''";
         $this->stmt = $this->dbh->query($sql);
 
         $this->key = 0;
