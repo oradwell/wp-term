@@ -25,19 +25,44 @@ class Config
      *
      * @return array       Config array
      */
-    public static function get($env = 'prod')
+    public static function get($env = null)
     {
-        if (static::$env === $env) {
+        // If no environment specified
+        // use previously set environment or prod
+        if (!$env) {
+            $env = static::$env ? static::$env : 'prod';
+        }
+
+        if (static::$env && static::$env === $env) {
             return static::$config;
         }
 
         $fileName = 'app.php';
-        if ($env && $env != 'prod') {
+        if ($env != 'prod') {
             $fileName = "app_$env.php";
         }
 
         static::$env = $env;
 
         return static::$config = require APP_PATH . '/config/' . $fileName;
+    }
+
+    /**
+     * Get current environment
+     *
+     * @return string Environment
+     */
+    public static function getEnv()
+    {
+        return static::$env;
+    }
+
+    /**
+     * Clear environment for testing
+     */
+    public static function clear()
+    {
+        static::$env = null;
+        static::$config = null;
     }
 }
