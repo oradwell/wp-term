@@ -19,6 +19,16 @@ Configuration
 Configuration is stored in `config/` directory as `app.php` for production
 and `app_test.php` for unit tests.
 
+Tests
+-----
+Code is fully covered by PHPUnit unit tests.
+
+Assuming you have `phpunit.phar` in the project root directory, run PHPUnit
+tests using this command
+```
+php phpunit.phar
+```
+
 Deployment
 ----------
 Requirements:
