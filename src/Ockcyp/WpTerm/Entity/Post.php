@@ -81,7 +81,7 @@ class Post
     /**
      * Sets config
      *
-     * @param string $config Config
+     * @param array $config Config
      */
     public function setConfig($config)
     {
