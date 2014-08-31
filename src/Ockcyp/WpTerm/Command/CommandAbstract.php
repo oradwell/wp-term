@@ -59,6 +59,8 @@ abstract class CommandAbstract
         return $this->executeCommand();
     }
 
+    abstract public function executeCommand();
+
     /**
      * Change name of the command. Used for command aliases
      *
@@ -132,6 +134,10 @@ abstract class CommandAbstract
      */
     protected function checkArgumentsValid()
     {
+        if (!isset(static::$validArguments)) {
+            return;
+        }
+
         $invalidArgs = array_diff($this->arguments, static::$validArguments);
         if ($invalidArgs) {
             throw new InvalidCommandArgumentException(
