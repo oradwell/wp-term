@@ -14,6 +14,13 @@ abstract class CommandAbstract
     public static $usage;
 
     /**
+     * Name of the command
+     *
+     * @var string
+     */
+    protected $name;
+
+    /**
      * Command arguments
      *
      * @var array
