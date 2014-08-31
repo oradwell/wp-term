@@ -7,7 +7,7 @@ class File extends PostProviderAbstract
     /**
      * File handle
      *
-     * @var integer
+     * @var resource
      */
     protected $fh;
 

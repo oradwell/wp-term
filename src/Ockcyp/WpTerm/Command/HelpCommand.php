@@ -14,6 +14,11 @@ class HelpCommand extends CommandAbstract
      */
     public static $usage = '[<command name>]';
 
+    /**
+     * Name of the command used when printing usage
+     *
+     * @var string
+     */
     protected $name = 'help';
 
     /**
