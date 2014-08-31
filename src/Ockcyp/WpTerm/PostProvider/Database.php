@@ -3,6 +3,7 @@
 namespace Ockcyp\WpTerm\PostProvider;
 
 use PDO;
+use PDOStatement;
 
 class Database extends PostProviderAbstract
 {
