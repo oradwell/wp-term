@@ -44,7 +44,6 @@ class CommandFactory
      *                            that extends CommandAbstract
      *
      * @throws Ockcyp\WpTerm\Exception\InvalidCommandException If command is not a valid command
-     * @throws \RuntimeException If command alias map definition is invalid
      */
     public static function make($executable)
     {
@@ -59,28 +58,69 @@ class CommandFactory
             );
         }
 
-        $aliasMap = static::$commandAliasMap[$executable];
+        $aliasData = static::$commandAliasMap[$executable];
+        
+        return static::makeCommandFromAliasData($aliasData);
+    }
 
-        if (isset($aliasMap['command'])) {
-            $cmdClass = __NAMESPACE__ . '\\' . $aliasMap['command'];
-            return new $cmdClass;
+    /**
+     * Makes a command from alias data
+     *
+     * @param  array $aliasData Alias data of the executable given
+     *
+     * @return CommandAbstract  Instance of a class
+     *                          that extends CommandAbstract
+     *
+     * @throws \RuntimeException If command alias map definition is invalid
+     */
+    protected static function makeCommandFromAliasData($aliasData)
+    {
+        if (isset($aliasData['command'])) {
+            return static::makeCommandFromClassName($aliasData['command']);
         }
 
-        if (!isset($aliasMap['aliasOf'])) {
+        if (!isset($aliasData['aliasOf'])) {
             // This should never be reached
             throw new \RuntimeException('Invalid command alias map definition');
         }
 
-        $command = static::make($aliasMap['aliasOf']);
+        $command = static::make($aliasData['aliasOf']);
 
-        if (isset($aliasMap['arg'])) {
-            $command->addArgument($aliasMap['arg']);
+        return static::prepareCommandObject($command, $aliasData);
+    }
+
+    /**
+     * Make command from class name
+     *
+     * @param  string $commandClass Command class without namespace
+     *
+     * @return CommandAbstract      Instance of the command
+     */
+    protected static function makeCommandFromClassName($commandClass)
+    {
+        $fullCmdClass = __NAMESPACE__ . '\\' . $commandClass;
+
+        return new $fullCmdClass;
+    }
+
+    /**
+     * Prepare command by adding argument and changing its name 
+     *
+     * @param  CommandAbstract $command Command to be prepared
+     * @param  array  $aliasData        Alias data of the executable
+     *
+     * @return CommandAbstract          Prepared command
+     */
+    protected static function prepareCommandObject($command, $aliasData)
+    {
+        if (isset($aliasData['arg'])) {
+            $command->addArgument($aliasData['arg']);
         }
 
-        if (isset($aliasMap['name'])) {
-            $command->setName($aliasMap['name']);
+        if (isset($aliasData['name'])) {
+            $command->setName($aliasData['name']);
         }
-        
+
         return $command;
     }
 }
