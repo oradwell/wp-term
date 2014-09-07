@@ -1,6 +1,8 @@
 WP-Term
 =======
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ockcyp/wp-term/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ockcyp/wp-term/?branch=master)
+
 Pointless PHP script that provides visitors of your [WordPress](http://wordpress.org/) website a unix-like CLI to view and navigate posts / pages.
 
 Not to be confused with [WP-CLI](http://wp-cli.org/) or [WP-Terminal](http://wordpress.org/plugins/wp-terminal/).
