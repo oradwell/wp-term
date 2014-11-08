@@ -3,7 +3,6 @@
 namespace Ockcyp\WpTerm\Command;
 
 use Ockcyp\WpTerm\Command\CommandFactory;
-use Ockcyp\WpTerm\Exception\InvalidCommandException;
 
 class HelpCommand extends CommandAbstract
 {

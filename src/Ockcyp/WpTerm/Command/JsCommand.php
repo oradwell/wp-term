@@ -15,6 +15,8 @@ class JsCommand extends CommandAbstract
 
     /**
      * Set name of the command
+     *
+     * @param string $name
      */
     public function __construct($name)
     {

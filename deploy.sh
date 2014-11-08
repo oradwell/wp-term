@@ -42,6 +42,9 @@ if [ ! -d "$themedir" ]; then
   exit 1
 fi
 
+mkdir -p "$deploy_dir/wp-term"
+cp -a config/ src/ bootstrap.php wp-term.php "$deploy_dir/wp-term"
+
 for theme in "$integrations_dir/[^common]*"
 do
   themeloc=`readlink -m $theme`

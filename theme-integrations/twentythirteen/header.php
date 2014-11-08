@@ -38,7 +38,7 @@
 			script.onload = function () {
 				jQuery('.terminal').show();
 				jQuery('.home-link,.term-toggle-link').hide();
-				wpTerm = wpTerm(jQuery('.terminal'));
+				wpTerm = wpTerm(jQuery('.terminal'), '<?php echo home_url('/wp-term/wp-term.php'); ?>');
 				jQuery('.term-input').on('keydown', wpTerm.handleKeyDown);
 				jQuery('.term-input').on('keyup', wpTerm.handleKeyUp)
 					.focus();
