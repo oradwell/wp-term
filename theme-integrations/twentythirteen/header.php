@@ -30,6 +30,13 @@
 	<?php wp_head(); ?>
 	<script type="text/javascript">
 		function openTerm() {
+			if (typeof wpTerm === 'object') {
+				jQuery('.terminal').show();
+				jQuery('.home-link,.term-toggle-link').hide();
+				jQuery('.term-input').focus();
+				return;
+			}
+
 			var head = document.getElementsByTagName('head')[0];
 			var script = document.createElement('script');
 			script.type = 'text/javascript';
@@ -38,9 +45,9 @@
 			script.onload = function () {
 				jQuery('.terminal').show();
 				jQuery('.home-link,.term-toggle-link').hide();
-				wpTerm = wpTerm(jQuery('.terminal'), '<?php echo home_url('/wp-term/wp-term.php'); ?>');
-				jQuery('.term-input').on('keydown', wpTerm.handleKeyDown);
-				jQuery('.term-input').on('keyup', wpTerm.handleKeyUp)
+				wpTerm = wpTerm(jQuery('.terminal'), '<?php echo home_url('wp-term/wp-term.php'); ?>');
+				jQuery('.term-input').on('keydown', wpTerm.handleKeyDown)
+					.on('keyup', wpTerm.handleKeyUp)
 					.focus();
 			};
 

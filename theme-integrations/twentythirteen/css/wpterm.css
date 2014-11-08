@@ -22,4 +22,8 @@
     position: absolute;
     right: 3px;
     top: 3px;
+    font-family: "Courier New", Courier, monospace;
+    color: #FFF;
+    background-color: #000;
+    padding: 2px 5px;
 }

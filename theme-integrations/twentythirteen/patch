@@ -1,11 +1,18 @@
 --- a/wp-content/themes/twentythirteen/header.php
 +++ b/wp-content/themes/twentythirteen/header.php
-@@ -28,6 +28,30 @@
+@@ -28,6 +28,38 @@
  	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
  	<![endif]-->
  	<?php wp_head(); ?>
 +	<script type="text/javascript">
 +		function openTerm() {
++			if (typeof wpTerm === 'object') {
++				jQuery('.terminal').show();
++				jQuery('.home-link,.term-toggle-link').hide();
++				jQuery('.term-input').focus();
++				return;
++			}
++
 +			var head = document.getElementsByTagName('head')[0];
 +			var script = document.createElement('script');
 +			script.type = 'text/javascript';
@@ -15,7 +22,8 @@
 +				jQuery('.terminal').show();
 +				jQuery('.home-link,.term-toggle-link').hide();
 +				wpTerm = wpTerm(jQuery('.terminal'), '<?php echo home_url('wp-term/wp-term.php'); ?>');
-+				jQuery('.term-input').on('keyup', wpTerm.handleKeyUp)
++				jQuery('.term-input').on('keydown', wpTerm.handleKeyDown)
++					.on('keyup', wpTerm.handleKeyUp)
 +					.focus();
 +			};
 +
@@ -31,7 +39,7 @@
  </head>
  
  <body <?php body_class(); ?>>
-@@ -37,6 +61,14 @@
+@@ -37,6 +69,14 @@
  				<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
  				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
  			</a>
