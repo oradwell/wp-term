@@ -22,23 +22,6 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext
     }
 
     /**
-     * @Then I should see the terminal
-     */
-    public function iShouldSeeTheTerminal()
-    {
-        $page = $this->getSession()->getPage();
-        $elementList = $page->find('css', '.terminal');
-        foreach ($elementList as $element) {
-            if (!$element->isVisible()) {
-                throw new ExpectationException(
-                    'Terminal is not visible, but visible expected.',
-                    $this->getSession()
-                );
-            }
-        }
-    }
-
-    /**
      * @When I execute command :command
      */
     public function iExecuteCommand($command)
@@ -55,19 +38,37 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext
     }
 
     /**
+     * @Then I should see the terminal
+     */
+    public function iShouldSeeTheTerminal()
+    {
+        $terminal = $this->getTerminal();
+        if (!$terminal->isVisible()) {
+            throw new ExpectationException(
+                'Terminal is not visible, but visible expected.',
+                $this->getSession()
+            );
+        }
+    }
+
+    /**
      * @Then I should not see the terminal
      */
     public function iShouldNotSeeTheTerminal()
     {
-        $page = $this->getSession()->getPage();
-        $elementList = $page->findAll('css', '.terminal');
-        foreach ($elementList as $element) {
-            if ($element->isVisible()) {
-                throw new ExpectationException(
-                    'Terminal is visible, but invisible expected.',
-                    $this->getSession()
-                );
-            }
+        $terminal = $this->getTerminal();
+        if ($terminal->isVisible()) {
+            throw new ExpectationException(
+                'Terminal is visible, but invisible expected.',
+                $this->getSession()
+            );
         }
+    }
+
+    private function getTerminal()
+    {
+        return $this->getSession()
+            ->getPage()
+            ->find('css', '.terminal');
     }
 }
