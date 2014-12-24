@@ -25,7 +25,7 @@ class GotoCommandTest extends PHPUnit_Framework_TestCase
             ->execute();
 
         $this->assertNotEmpty($res);
-        $this->assertEquals('http://www.ockwebs.com/about/', $res['url']);
+        $this->assertEquals('http://blog.omer.london/about/', $res['url']);
     }
 
     /**

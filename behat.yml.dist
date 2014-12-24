@@ -1,6 +1,6 @@
 default:
     extensions:
         Behat\MinkExtension:
-            base_url: http://www.ockwebs.com
+            base_url: http://blog.omer.london
             goutte: ~
             selenium2: ~

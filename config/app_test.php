@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'hostname' => 'http://www.ockwebs.com',
+    'hostname' => 'http://blog.omer.london',
     'permalink_structure' => '/%year%/%monthnum%/%postname%/',
     'post_src' => 'post_src_file',
     'post_src_file' => array(

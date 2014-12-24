@@ -13,8 +13,8 @@ Demo
 
 GIF image recorded using [ScreenToGif](http://screentogif.codeplex.com/)
 
-Test it on my website:
-[www.ockwebs.com](http://www.ockwebs.com/)
+Test it on my blog:
+[blog.omer.london](http://blog.omer.london/)
 
 Configuration
 -------------
@@ -23,12 +23,27 @@ and `app_test.php` for unit tests.
 
 Tests
 -----
+
+### PHPUnit
+
 Code is fully covered by PHPUnit unit tests.
 
 Assuming you have `phpunit.phar` in the project root directory, run PHPUnit
-tests using this command
+tests using this command:
 ```
 php phpunit.phar
+```
+
+### Behat
+
+For behat tests you need to do ``composer install`` and have Selenium2 running
+
+By default tests are run on [my blog](http://blog.omer.london/)
+but can be changed by modifying behat config.
+
+Run the tests by executing:
+```
+vendor/bin/behat
 ```
 
 Deployment
