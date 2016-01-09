@@ -9,12 +9,12 @@ Not to be confused with [WP-CLI](http://wp-cli.org/) or [WP-Terminal](http://wor
 
 Demo
 ----
-![demo.gif](https://raw.githubusercontent.com/ockcyp/wp-term/master/demo.gif)
+![demo.gif](https://raw.githubusercontent.com/oradwell/wp-term/master/demo.gif)
 
 GIF image recorded using [ScreenToGif](http://screentogif.codeplex.com/)
 
 Test it on my blog:
-[blog.omer.london](http://blog.omer.london/)
+[blog.radwell.codes](http://blog.radwell.codes/)
 
 Configuration
 -------------
@@ -38,7 +38,7 @@ php phpunit.phar
 
 For behat tests you need to do ``composer install`` and have Selenium2 running
 
-By default tests are run on [my blog](http://blog.omer.london/)
+By default tests are run on [my blog](http://blog.radwell.codes/)
 but can be changed by modifying behat config.
 
 Run the tests by executing:
